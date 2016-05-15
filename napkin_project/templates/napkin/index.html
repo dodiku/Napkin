@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>NAPKIN</title>
+        <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,600,700,500,500italic,600italic,700italic' rel='stylesheet' type='text/css'>
+        <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
+    </head>
+
+    <body>
+      <img src="{% static "images/napkin_logo.svg" %}" alt="NAPKIN logo" />
+
+      <h3>{{ maintitle }}</h3>
+      <h8>{{ subtitle }}</h8>
+    </body>
+
+</html>
