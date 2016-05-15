@@ -1,3 +1,6 @@
 *.DS_Store
 *.pyc
+*.log
+*.sql
+*.sqlite
 /napkin-env
