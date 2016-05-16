@@ -5,6 +5,7 @@
   width: 50%;
   padding: 10%;
   margin-top: 5%;
+  margin-bottom: 20%; /* super importnat for the footer position!! */
 }
 
 #center {
@@ -21,6 +22,7 @@
   margin-bottom: 8px;
   margin-top: 24px;
   max-width: 400px;
+  font-weight: 500;
 }
 
 .subtitle{
@@ -31,24 +33,27 @@
 }
 
 .footer {
+  font-size: 12px;
+  color: #DDDDDD;
   line-height: 60px;
+  height: 60px;
   width: 100%;
   background-color: #222222;
-  position:fixed;
+  position: relative;
   bottom:0;
+  overflow: hidden;
+  z-index: 1;
+  display: block;
+  width:100%;
 }
 
 #footer_left {
-  font-size: 12px;
   float: left;
-  color: #DDDDDD;
   padding-left: 3%;
 }
 
 #footer_right {
-  font-size: 12px;
   float: right;
-  color: #DDDDDD;
   padding-right: 3%;
 }
 
@@ -57,8 +62,9 @@ html {
 }
 
 body {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'Palanquin', sans-serif;
   color: #222222;
   margin-left: 0px;
   margin-right: 0px;
+  font-weight: 300;
 }
