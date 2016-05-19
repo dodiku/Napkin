@@ -3,4 +3,5 @@
 *.log
 *.sql
 *.sqlite
+*.sqlite3
 /napkin-env

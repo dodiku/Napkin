@@ -4,16 +4,18 @@
 
 <html>
     <head>
-        <title>NAPKIN: Share Content</title>
+        {% if group_name %}
+          <title>NAPKIN // {{ group_name }}</title>
+        {% endif %}
         <link href='https://fonts.googleapis.com/css?family=Palanquin:300,500' rel='stylesheet' type='text/css'>        <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
     </head>
 
     <body>
-      <div id="main_block">
-        <img id="center" alt="NAPKIN logo" src="{% static "images/napkin_logo.svg" %}" alt="NAPKIN logo" />
-        <span class="title" id="center" alt="NAPKIN is a place where you can share content with a closed group of people.">NAPKIN is a place where you can share content with a closed group of people.</span>
-        <span class="subtitle" id="center" alt="No registration. No signup.">No registration. No signup.</span>
-      </div>
+
+      this is a group page.
+
+
+
       <footer class="footer">
           <div id="footer_left">
               About NAPKIN | Contact us!
@@ -22,6 +24,8 @@
                Copyright 2016 Napkin. All Rights Reserved.
           </div>
       </footer>
+
+
     </body>
 
 </html>
