@@ -13,12 +13,12 @@ random_name = generate_name()
 
 class GroupForm(forms.ModelForm):
     name = forms.CharField(max_length=24, help_text=(random_name + "..."), initial=random_name)
-    name_slug = forms.CharField(widget=forms.HiddenInput(), required=False)
-    created = forms.DateTimeField(widget=forms.HiddenInput(), required=False, initial=0)
+    # name_slug = forms.CharField(widget=forms.HiddenInput(), required=False) ### excluded
+    # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False) ### excluded
 
     class Meta:
         model = Group
-        fields = ('name',)
+        exclude = ('name_slug', 'created',)
 
 
 class PostForm(forms.ModelForm):

@@ -13,7 +13,26 @@
         <img id="center" alt="NAPKIN logo" src="{% static "images/napkin_logo.svg" %}" alt="NAPKIN logo" />
         <span class="title" id="center" alt="NAPKIN is a place where you can share content with a closed group of people.">NAPKIN is a place where you can share content with a closed group of people.</span>
         <span class="subtitle" id="center" alt="No registration. No signup.">No registration. No signup.</span>
+        <div>
+          Create a new group (or go to an existing one):
+          <form id="center" method="post" action="/">
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+
+                {{ field }}
+            {% endfor %}
+
+            <input type="submit" name="submit" value="GO" />
+          </form>
+        </div>
       </div>
+
       <footer class="footer">
           <div id="footer_left">
               About NAPKIN | Contact us!

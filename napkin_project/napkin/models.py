@@ -5,7 +5,7 @@ from django.db import models
 class Group(models.Model):
     name = models.CharField(max_length=24, unique=True, blank=False)
     name_slug = models.SlugField(blank=True)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.name_slug = slugify(self.name)

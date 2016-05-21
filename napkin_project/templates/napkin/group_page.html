@@ -12,9 +12,20 @@
 
     <body>
 
-      this is a group page.
+      {% if group_name %}
+        <h1>{{ group_name }}</h1>
+        Since {{ created_date }}.</br>
 
-
+        {% if posts %}
+        <ul>
+          {% for post in posts %}
+          <li><a href="{{ post.url }}" target="_blank">{{ post.text }}</a></li>
+          {% endfor %}
+        </ul>
+        {% else %}
+          <p>This is a new group. Be the first to post!</p>
+        {% endif %}
+      {% endif %}
 
       <footer class="footer">
           <div id="footer_left">

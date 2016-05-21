@@ -30,4 +30,4 @@ def get_name():
     adj = random.choice(adjectives)
     noun = random.choice(nouns)
     num = random.randint(1000, 9999)
-    return '{adj}-{noun}-{num}'.format(adj=adj, noun=noun, num=num)
+    return '{adj} {noun} {num}'.format(adj=adj, noun=noun, num=num)
