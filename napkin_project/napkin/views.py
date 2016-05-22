@@ -74,8 +74,8 @@ def group_page(request, group_name_slug):
             if form.is_valid():
                 post = form.save(commit=False)
                 post.group_id = group_id
+                post.created = datetime.datetime.now()
                 post.save()
-                slug = group_object.name_slug
                 return render('napkin/group_page.html')
             else:
                 print form.errors.as_data()
@@ -84,8 +84,12 @@ def group_page(request, group_name_slug):
             'group_name': group_name,
             'created_date': first_post_date,
             'posts': posts,
-            'form': PostForm(),
+            'post_form': PostForm(),
+            'group_form': GroupForm(),
+            'group_id': group_id,
+            'group_name_slug': group_name_slug,
             }
+
 
     except Group.DoesNotExist:
         return redirect('/')

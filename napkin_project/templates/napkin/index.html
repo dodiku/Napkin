@@ -15,7 +15,7 @@
         <span class="subtitle" id="center" alt="No registration. No signup.">No registration. No signup.</span>
         <div>
           Create a new group (or go to an existing one):
-          <form id="center" method="post" action="/">
+          <form id="center" method="post" action="{% url 'index' %}">
 
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}

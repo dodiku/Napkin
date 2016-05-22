@@ -25,8 +25,8 @@ class PostForm(forms.ModelForm):
     # group_id = forms.ForeignKey(widget=forms.HiddenInput()) ### excluded
     url = forms.URLField(required=False, help_text="url...")
     text = forms.CharField(max_length=1000, required=True, help_text="write a comment...")
-    created = forms.DateTimeField(widget=forms.HiddenInput(), required=False, initial=0)
+    # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False, initial=0) ### excluded
 
     class Meta:
         model = Post
-        exclude = ('group_id',)
+        exclude = ('group_id', 'created',)
