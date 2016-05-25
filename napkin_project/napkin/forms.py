@@ -21,6 +21,7 @@ class GroupForm(forms.ModelForm):
         exclude = ('name_slug', 'created',)
 
 
+
 class PostForm(forms.ModelForm):
     # group_id = forms.ForeignKey(widget=forms.HiddenInput()) ### excluded
     url = forms.URLField(required=False, help_text="url...")

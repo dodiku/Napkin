@@ -16,6 +16,7 @@
       {% if group_name %}
         <h1>{{ group_name }}</h1>
         {{ created_date }}</br>
+      {% endif %}
       <div id="form">
         Create a new group (or go to an existing one):
         <form method="post" action="{% url 'index' %}">
@@ -37,7 +38,6 @@
       </div>
 
      <div id="form">
-        Create a new group (or go to an existing one):
         <form method="post" action="{% url 'group_page' group_name_slug %}">
 
           {% csrf_token %}
@@ -45,26 +45,27 @@
               {{ hidden }}
           {% endfor %}
 
-          {% for field in post_form.visible_fields %}
-              {{ field.errors }}
-              {{ field }}</br>
-          {% endfor %}
+          Post new link:</br>
+          URL: {{ post_form.url }}</br>
+          Comment: {{ post_form.text }}</br>
 
           <input type="submit" name="submit" value="POST" class="submit"/>
         </form>
 
       </div>
 
+      <div>
         {% if posts %}
         <ul>
           {% for post in posts %}
-          <li><a href="{{ post.url }}" target="_blank">{{ post.text }}</a></li>
+          <li><a href="{{ post.url }}" target="_blank">{{ post.url }}</br></a>{{ post.text }}</li>
           {% endfor %}
         </ul>
         {% else %}
           <p>This is a new group. Be the first to post!</p>
         {% endif %}
-      {% endif %}
+      </div>
+
 
       <footer class="footer">
           <div id="footer_left">
