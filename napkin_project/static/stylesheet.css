@@ -1,8 +1,75 @@
+html {
+  background: url(images/back.png) repeat;
+}
+
+body {
+  font-family: 'Palanquin', sans-serif;
+  color: #222222;
+  margin-left: 0px;
+  margin-right: 0px;
+  font-weight: 300;
+}
+
+input[type=text] {
+    width: 200px;
+    padding: 8px 12px 8px 12px;
+    border: 1px solid #222222;
+    font-size: 16px;
+    display: inline;
+    margin-top: 0.5em;
+}
+
+input[type=text]:placeholder-shown {
+  color: #C5C3C6;
+  font-style: italic;
+}
+
+input[type=url] {
+    width: 200px;
+    padding: 8px 12px 8px 12px;
+    border: 1px solid #222222;
+    font-size: 16px;
+    display: inline;
+    margin-top: 0.5em;
+}
+
+input[type=url]:placeholder-shown {
+  color: #C5C3C6;
+  font-style: italic;
+}
+
+.submit {
+  background: #00FFB1;
+  border: 1px solid #000000;
+  box-shadow: 4px 4px 0px 0px #222222;
+  font-size: 14px;
+  padding: 9px 24px 9px 24px;
+  transition-duration: 0.1s;
+  margin-top: 0.5em;
+}
+
+.submit:hover {
+  background: #7FFFD8;
+  border: 1px solid #000000;
+  box-shadow: 4px 4px 0px 0px #222222;
+}
+
+.submit:active {
+  background: #4A90E2;
+  border: 1px solid #000000;
+  box-shadow: 0px 0px 0px 0px #222222;
+}
+
+.submit:focus {
+  outline:0;
+}
+
+
 #main_block {
   background-color: white;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  max-width: 60%;
   padding: 10%;
   margin-top: 5%;
   margin-bottom: 20%; /* super importnat for the footer position!! */
@@ -14,15 +81,24 @@
   margin-right: auto;
 }
 
+#form {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  align-items: center;
+  margin-top: 36px;
+}
+
 .title{
   font-size: 18px;
-  font-weight: 700;
   text-align: center;
   line-height: 22px;
   margin-bottom: 8px;
   margin-top: 24px;
   max-width: 400px;
   font-weight: 500;
+  margin-top: 36px;
 }
 
 .subtitle{
@@ -30,6 +106,7 @@
   text-align: center;
   line-height: 18px;
   max-width: 400px;
+  margin-top: 0.5em;
 }
 
 .footer {
@@ -55,16 +132,4 @@
 #footer_right {
   float: right;
   padding-right: 3%;
-}
-
-html {
-  background: url(images/back.png) repeat;
-}
-
-body {
-  font-family: 'Palanquin', sans-serif;
-  color: #222222;
-  margin-left: 0px;
-  margin-right: 0px;
-  font-weight: 300;
 }

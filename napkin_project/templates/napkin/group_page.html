@@ -7,7 +7,8 @@
         {% if group_name %}
           <title>NAPKIN // {{ group_name }}</title>
         {% endif %}
-        <link href='https://fonts.googleapis.com/css?family=Palanquin:300,500' rel='stylesheet' type='text/css'>        <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
+        <link href='https://fonts.googleapis.com/css?family=Palanquin:300,500' rel='stylesheet' type='text/css'>
+        <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
     </head>
 
     <body>
@@ -15,9 +16,9 @@
       {% if group_name %}
         <h1>{{ group_name }}</h1>
         {{ created_date }}</br>
-      <div>
+      <div id="form">
         Create a new group (or go to an existing one):
-        <form id="center" method="post" action="{% url 'index' %}">
+        <form method="post" action="{% url 'index' %}">
 
           {% csrf_token %}
           {% for hidden in group_form.hidden_fields %}
@@ -30,14 +31,14 @@
               {{ field }}
           {% endfor %}
 
-          <input type="submit" name="submit" value="GO" />
+          <input type="submit" name="submit" value="GO" class="submit"/>
         </form>
 
       </div>
 
-     <div>
+     <div id="form">
         Create a new group (or go to an existing one):
-        <form id="center" method="post" action="{% url 'group_page' group_name_slug %}">
+        <form method="post" action="{% url 'group_page' group_name_slug %}">
 
           {% csrf_token %}
           {% for hidden in post_form.hidden_fields %}
@@ -46,11 +47,10 @@
 
           {% for field in post_form.visible_fields %}
               {{ field.errors }}
-
-              {{ field }}
+              {{ field }}</br>
           {% endfor %}
 
-          <input type="submit" name="submit" value="POST" />
+          <input type="submit" name="submit" value="POST" class="submit"/>
         </form>
 
       </div>
