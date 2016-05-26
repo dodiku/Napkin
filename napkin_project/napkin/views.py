@@ -11,23 +11,20 @@ def index(request):
 
     if request.method == 'POST':
         form = GroupForm(request.POST)
-        print "DEBUG"
+        # create_or_redirect(form)
+        print "DEBUG index view"
         print form.data['name']
         name = form.data['name']
         name_slug = slugify(name)
-        print (name_slug)
+        print name_slug
         if Group.objects.filter(name_slug=name_slug).count() > 0:
             redirection_url = "http://127.0.0.1:8000/"+name_slug
             return redirect(redirection_url)
         else:
             if form.is_valid():
                 group = form.save(commit=False)
-                print "DEBUG"
-                print group
                 group.name_slug = slugify(group.name)
                 group.created = datetime.datetime.now()
-                print "DEBUG"
-                print group
                 group.save()
                 redirection_url = "http://127.0.0.1:8000/"+group.name_slug
                 return redirect(redirection_url)
@@ -50,19 +47,14 @@ def group_page(request, group_name_slug):
     except Group.DoesNotExist:
         return redirect('/')
 
-        ### name, url, text
-
     group_id = group_object.id
+    print "DEBUG group_page view"
     print "group_id:"
     print group_id
 
     if request.method == 'POST':
+
         form = PostForm(request.POST)
-
-        # post_form = PostForm(request.POST, prefix="pst")
-        # group_form = GroupForm(request.POST, prefix="grp")
-
-
         if form.is_valid():
             post = form.save(commit=False)
             post.group = group_object
@@ -70,46 +62,29 @@ def group_page(request, group_name_slug):
             post.save()
             redirection_url = "http://127.0.0.1:8000/"+group_name_slug
             return redirect(redirection_url)
-            # return render('napkin/group_page.html')
         else:
             print "post form is NOT valid --"
             print form.errors.as_data()
-            # group_id = group_object.id
-            # group_name = group_object.name
-            # posts = Post.objects.filter(group_id=group_id).order_by('-created')
-            # context_dict = {
-            # 'post_form': PostForm(),
-            # 'group_name_slug': group_name_slug,
-            # }
-            # return render(request, 'napkin/group_page.html', context_dict)
-        form = GroupForm(request.POST)
 
-        print "DEBUG"
+        form = GroupForm(request.POST)
         print form.data['name']
         name = form.data['name']
         name_slug = slugify(name)
         print name_slug
-        print "line 90"
         if Group.objects.filter(name_slug=name_slug).count() > 0:
             redirection_url = "http://127.0.0.1:8000/"+name_slug
             return redirect(redirection_url)
         else:
             if form.is_valid():
                 group = form.save(commit=False)
-                print "DEBUG"
-                print group
                 group.name_slug = slugify(group.name)
                 group.created = datetime.datetime.now()
-                print "DEBUG"
-                print group
                 group.save()
                 redirection_url = "http://127.0.0.1:8000/"+group.name_slug
                 return redirect(redirection_url)
             else:
                 print "group form is NOT valid --"
                 print group_form.errors.as_data()
-
-    # getting and showing posts, if any
 
     group_name = group_object.name
     posts = Post.objects.filter(group_id=group_id).order_by('-created')
@@ -130,6 +105,5 @@ def group_page(request, group_name_slug):
     'group_id': group_id,
     'group_name_slug': group_name_slug,
     }
-    # form = PostForm()
-    # return render_to_response('napkin/group_page.html', context_dict)
+
     return render(request, 'napkin/group_page.html', context_dict)
