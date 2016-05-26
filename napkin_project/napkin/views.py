@@ -14,10 +14,10 @@ def index(request):
         print "DEBUG"
         print form.data['name']
         name = form.data['name']
-        print (name)
-        if Group.objects.filter(name=name).count() > 0:
-            existing_group = Group.objects.get(name=name)
-            redirection_url = "http://127.0.0.1:8000/"+existing_group.name_slug
+        name_slug = slugify(name)
+        print (name_slug)
+        if Group.objects.filter(name_slug=name_slug).count() > 0:
+            redirection_url = "http://127.0.0.1:8000/"+name_slug
             return redirect(redirection_url)
         else:
             if form.is_valid():
@@ -48,20 +48,16 @@ def group_page(request, group_name_slug):
     try:
         group_object = Group.objects.get(name_slug=group_name_slug)
         group_id = group_object.id
-        print (group_id)
-        # pprint.pprint (group_object)
-        print (Group.objects.filter(name_slug=group_name_slug).values())
         group_name = group_object.name
-        print (group_name)
-        # Post.objects.annotate(post_date=Min('created')).filter(group_id=group_id)
-        # first_post = Post.objects.filter(group_id=group_id).first()
-        # first_post_date = first_post.created
-
         posts = Post.objects.filter(group_id=group_id).order_by('-created')
+        # DEBUG
+        print (Group.objects.filter(name_slug=group_name_slug).values())
+        print group_id
+        print group_name
         print "post object --"
         print (Post.objects.filter(group_id=group_id).order_by('-created').values())
         print "post object datetime.now() --"
-        print (datetime.datetime.now())
+        print datetime.datetime.now()
         if not posts:
             first_post_date = "This Napkin is empty."
         else:
@@ -76,7 +72,9 @@ def group_page(request, group_name_slug):
                 post.group_id = group_id
                 post.created = datetime.datetime.now()
                 post.save()
-                return render('napkin/group_page.html')
+                redirection_url = "http://127.0.0.1:8000/"+group_name_slug
+                return redirect(redirection_url)
+                # return render('napkin/group_page.html')
             else:
                 print form.errors.as_data()
         else:
@@ -84,14 +82,20 @@ def group_page(request, group_name_slug):
             'group_name': group_name,
             'created_date': first_post_date,
             'posts': posts,
-            'post_form': PostForm(),
-            'group_form': GroupForm(),
+            'form': PostForm(),
+            # 'group_form': GroupForm(),
             'group_id': group_id,
             'group_name_slug': group_name_slug,
             }
+            form = PostForm()
+
+            # return render_to_response('napkin/group_page.html', context_dict)
+            return render(request, 'napkin/group_page.html', context_dict)
+
+
 
 
     except Group.DoesNotExist:
         return redirect('/')
 
-    return render_to_response('napkin/group_page.html', context_dict)
+    # return render_to_response('napkin/group_page.html', context_dict)

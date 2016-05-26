@@ -17,7 +17,7 @@
         <h1>{{ group_name }}</h1>
         {{ created_date }}</br>
       {% endif %}
-      <div id="form">
+      <!-- <div id="form">
         Create a new group (or go to an existing one):
         <form method="post" action="{% url 'index' %}">
 
@@ -35,19 +35,24 @@
           <input type="submit" name="submit" value="GO" class="submit"/>
         </form>
 
-      </div>
+      </div> -->
 
      <div id="form">
         <form method="post" action="{% url 'group_page' group_name_slug %}">
 
           {% csrf_token %}
-          {% for hidden in post_form.hidden_fields %}
+          {% for hidden in form.hidden_fields %}
               {{ hidden }}
           {% endfor %}
 
-          Post new link:</br>
-          URL: {{ post_form.url }}</br>
-          Comment: {{ post_form.text }}</br>
+          <!-- Post new link:</br>
+          URL: {{ form.url }}</br>
+          Comment: {{ form.text }}</br> -->
+          {% for field in form.visible_fields %}
+              {{ field.errors }}
+
+              {{ field }}
+          {% endfor %}
 
           <input type="submit" name="submit" value="POST" class="submit"/>
         </form>
