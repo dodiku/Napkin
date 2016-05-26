@@ -50,11 +50,15 @@ def group_page(request, group_name_slug):
     except Group.DoesNotExist:
         return redirect('/')
 
+    group_id = group_object.id
+
     if request.method == 'POST':
         form = PostForm(request.POST)
+
+
         if form.is_valid():
             post = form.save(commit=False)
-            post.group_id = group_id
+            post.group = group_object
             post.created = datetime.datetime.now()
             post.save()
             redirection_url = "http://127.0.0.1:8000/"+group_name_slug
@@ -71,9 +75,9 @@ def group_page(request, group_name_slug):
             # 'group_name_slug': group_name_slug,
             # }
             # return render(request, 'napkin/group_page.html', context_dict)
-            
+
     # getting and showing posts, if any
-    group_id = group_object.id
+
     group_name = group_object.name
     posts = Post.objects.filter(group_id=group_id).order_by('-created')
 
