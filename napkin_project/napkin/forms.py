@@ -30,4 +30,4 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        exclude = ('group_id', 'created',)
+        exclude = ('group', 'created',)
