@@ -57,18 +57,60 @@ input[type=url]:placeholder-shown {
   background: #7FFFD8;
   border: 1px solid #000000;
   box-shadow: 4px 4px 0px 0px #222222;
+  cursor: pointer;
 }
 
 .submit:active {
   background: #7FFFD8;
   border: 1px solid #000000;
   box-shadow: 0px 0px 0px 0px #222222;
+  cursor: pointer;
 }
 
 .submit:focus {
   outline:0;
 }
 
+.submit-home {
+  background: white;
+  border: 1px solid #000000;
+  box-shadow: 4px 4px 0px 0px #222222;
+  font-size: 14px;
+  padding: 9px 24px 9px 24px;
+  transition-duration: 0.1s;
+  margin-top: 0.5em;
+  /*display: inline-block;*/
+  margin-right: 18px;
+  float: left;
+
+}
+
+.submit-home:hover {
+  /*background: black;
+  color: white;*/
+  text-decoration: underline;
+  cursor: pointer;
+  border: 1px solid #000000;
+  box-shadow: 4px 4px 0px 0px #222222;
+}
+
+.submit-home:active {
+  /*background: black;
+  color: white;*/
+  text-decoration: underline;
+  border: 1px solid #000000;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px 0px #222222;
+}
+
+.submit-home:focus {
+  outline:0;
+}
+
+#form_header {
+  width: 500px;
+  float: right;
+}
 
 #main_block {
   background-color: white;
@@ -87,7 +129,7 @@ input[type=url]:placeholder-shown {
 }
 
 #form {
-  display: block;
+  /*display: block;*/
   margin-left: auto;
   margin-right: auto;
   text-align: center;

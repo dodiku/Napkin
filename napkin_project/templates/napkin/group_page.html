@@ -14,17 +14,14 @@
     <body>
       <div class="header">
 
-      </div>
+        <div>
+          <form action="http://127.0.0.1:8000/">
+            <input type="submit" value="NAPKIN" class="submit-home">
+          </form>
+        </div>
 
-      <div class="content" id="whitebg">
-
-        {% if group_name %}
-          <h1>{{ group_name }}</h1>
-          {{ created_date }}</br>
-        {% endif %}
-        <div id="form">
-          Create a new group (or go to an existing one):
-          <form method="post" action="{% url 'group_page' group_name_slug %}">
+        <div>
+          <form id="form_header" method="post" action="{% url 'group_page' group_name_slug %}">
 
             {% csrf_token %}
             {% for hidden in group_form.hidden_fields %}
@@ -39,8 +36,17 @@
 
             <input type="submit" name="submit" value="GO" class="submit"/>
           </form>
-
         </div>
+
+      </div>
+
+      <div class="content" id="whitebg">
+
+        {% if group_name %}
+          <h1>{{ group_name }}</h1>
+          {{ created_date }}</br>
+        {% endif %}
+
 
        <div id="form">
           <form method="post" action="{% url 'group_page' group_name_slug %}">
