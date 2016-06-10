@@ -4,6 +4,9 @@
 *.sql
 *.sqlite
 *.sqlite3
+*.db
 /napkin-env
 /napkin_env
-*.db
+napkin_project/db.sqlite3
+
+*.sqlite3
