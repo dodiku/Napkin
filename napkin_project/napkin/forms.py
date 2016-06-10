@@ -2,6 +2,8 @@ from django import forms
 from django.template.defaultfilters import slugify
 from napkin.models import Group, Post
 from random_name import get_name
+from django.core.exceptions import ValidationError
+
 
 def generate_name():
     for i in range(1, 10):
@@ -25,9 +27,15 @@ class GroupForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     # group = forms.ForeignKey(widget=forms.HiddenInput()) ### excluded
     url = forms.URLField(required=False, help_text="url...")
-    text = forms.CharField(max_length=1000, help_text="write a comment...")
+    text = forms.CharField(required=False, max_length=1000, help_text="write a comment...")
     # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False, initial=0) ### excluded
 
     class Meta:
         model = Post
         exclude = ('group', 'created',)
+
+    def clean(self):
+        if self.cleaned_data.get('url') and not self.cleaned_data.get('url').startswith("http://"):
+            url = "http://" + self.cleaned_data.get('url')
+            self.cleaned_data['url'] = url
+        return self.cleaned_data
