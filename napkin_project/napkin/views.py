@@ -93,23 +93,6 @@ def group_page(request, group_name_slug):
                     print "group form is NOT valid --"
                     print form.errors.as_data()
 
-        #
-        # #
-        # if Group.objects.filter(name_slug=name_slug).count() > 0:
-        #     redirection_url = "http://127.0.0.1:8000/"+name_slug
-        #     return redirect(redirection_url)
-        # else:
-        #     if form.is_valid():
-        #         group = form.save(commit=False)
-        #         group.name_slug = slugify(group.name)
-        #         group.created = datetime.datetime.now()
-        #         group.save()
-        #         redirection_url = "http://127.0.0.1:8000/"+group.name_slug
-        #         return redirect(redirection_url)
-        #     else:
-        #         print "group form is NOT valid --"
-        #         print group_form.errors.as_data()
-
     group_name = group_object.name
     posts = Post.objects.filter(group_id=group_id).order_by('-created')
 
