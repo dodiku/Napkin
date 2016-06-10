@@ -12,63 +12,70 @@
     </head>
 
     <body>
-
-      {% if group_name %}
-        <h1>{{ group_name }}</h1>
-        {{ created_date }}</br>
-      {% endif %}
-      <div id="form">
-        Create a new group (or go to an existing one):
-        <form method="post" action="{% url 'group_page' group_name_slug %}">
-
-          {% csrf_token %}
-          {% for hidden in group_form.hidden_fields %}
-              {{ hidden }}
-          {% endfor %}
-
-          {% for field in group_form.visible_fields %}
-              {{ field.errors }}
-
-              {{ field }}
-          {% endfor %}
-
-          <input type="submit" name="submit" value="GO" class="submit"/>
-        </form>
+      <div class="header">
 
       </div>
 
-     <div id="form">
-        <form method="post" action="{% url 'group_page' group_name_slug %}">
+      <div class="content" id="whitebg">
 
-          {% csrf_token %}
-          {% for hidden in post_form.hidden_fields %}
-              {{ hidden }}
-          {% endfor %}
-
-          Post new link:</br>
-          URL: {{ post_form.url }}</br>
-          Comment (must): {{ post_form.text }}</br>
-          <!-- {% for field in post_form.visible_fields %}
-              {{ field.errors }}
-
-              {{ field }}
-          {% endfor %} -->
-
-          <input type="submit" name="submit" value="POST" class="submit" required/>
-        </form>
-
-      </div>
-
-      <div>
-        {% if posts %}
-        <ul>
-          {% for post in posts %}
-          <li><a href="{{ post.url }}" target="_blank">{{ post.url }}</br></a>{{ post.text }}</li>
-          {% endfor %}
-        </ul>
-        {% else %}
-          <p>This is a new group. Be the first to post!</p>
+        {% if group_name %}
+          <h1>{{ group_name }}</h1>
+          {{ created_date }}</br>
         {% endif %}
+        <div id="form">
+          Create a new group (or go to an existing one):
+          <form method="post" action="{% url 'group_page' group_name_slug %}">
+
+            {% csrf_token %}
+            {% for hidden in group_form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in group_form.visible_fields %}
+                {{ field.errors }}
+
+                {{ field }}
+            {% endfor %}
+
+            <input type="submit" name="submit" value="GO" class="submit"/>
+          </form>
+
+        </div>
+
+       <div id="form">
+          <form method="post" action="{% url 'group_page' group_name_slug %}">
+
+            {% csrf_token %}
+            {% for hidden in post_form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            Post new link:</br>
+            URL: {{ post_form.url }}</br>
+            Comment (must): {{ post_form.text }}</br>
+            <!-- {% for field in post_form.visible_fields %}
+                {{ field.errors }}
+
+                {{ field }}
+            {% endfor %} -->
+
+            <input type="submit" name="submit" value="POST" class="submit" required/>
+          </form>
+
+        </div>
+
+        <div>
+          {% if posts %}
+          <ul>
+            {% for post in posts %}
+            <li><a href="{{ post.url }}" target="_blank">{{ post.url }}</br></a>{{ post.text }}</li>
+            {% endfor %}
+          </ul>
+          {% else %}
+            <p>This is a new group. Be the first to post!</p>
+          {% endif %}
+        </div>
+
       </div>
 
 

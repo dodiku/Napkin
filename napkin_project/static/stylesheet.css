@@ -38,6 +38,11 @@ input[type=url]:placeholder-shown {
   font-style: italic;
 }
 
+.content {
+  min-height: 1000px;
+  margin: 90px auto;
+}
+
 .submit {
   background: #00FFB1;
   border: 1px solid #000000;
@@ -71,7 +76,7 @@ input[type=url]:placeholder-shown {
   margin-right: auto;
   max-width: 60%;
   padding: 10%;
-  margin-top: 5%;
+  /*margin-top: 5%;*/
   margin-bottom: 20%; /* super importnat for the footer position!! */
 }
 
@@ -88,6 +93,10 @@ input[type=url]:placeholder-shown {
   text-align: center;
   align-items: center;
   margin-top: 36px;
+}
+
+#whitebg {
+  background: white;
 }
 
 .title{
@@ -122,6 +131,15 @@ input[type=url]:placeholder-shown {
   z-index: 1;
   display: block;
   width:100%;
+}
+
+.header {
+  height: 80px;
+  background: red;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background: url(images/back.png) repeat;
 }
 
 #footer_left {
