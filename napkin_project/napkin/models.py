@@ -12,6 +12,7 @@ class Group(models.Model):
         super(Group, self).save(*args, **kwargs)
 
 
+
 class Post(models.Model):
     group = models.ForeignKey(Group)
     url = models.URLField(blank=True)

@@ -6,23 +6,37 @@ from napkin.models import Group, Post
 from django.template.defaultfilters import slugify
 import datetime
 from time import strftime
+from random_name import get_name
+
+
+def generate_name():
+    for i in range(1, 10):
+        name = get_name()
+        if not Group.objects.filter(name=name).first():
+            return name
+
 
 def index(request):
 
     if request.method == 'POST':
         form = GroupForm(request.POST)
-        # create_or_redirect(form)
+
         print "DEBUG index view"
         print form.data['name']
         name = form.data['name']
         name_slug = slugify(name)
         print name_slug
-        if Group.objects.filter(name_slug=name_slug).count() > 0:
+        if Group.objects.filter(name_slug=name_slug).count() > 0 and name != "":
             redirection_url = "http://127.0.0.1:8000/"+name_slug
             return redirect(redirection_url)
         else:
             if form.is_valid():
                 group = form.save(commit=False)
+                if group.name == "":
+                    print "doing something with the missing name..."
+                    random_name = generate_name()
+                    print random_name
+                    group.name = random_name
                 group.name_slug = slugify(group.name)
                 group.created = datetime.datetime.now()
                 group.save()
@@ -74,25 +88,32 @@ def group_page(request, group_name_slug):
 
         else:
             form = GroupForm(request.POST)
-            print "======"
+            print "DEBUG index view"
             print form.data['name']
             name = form.data['name']
             name_slug = slugify(name)
             print name_slug
-            print "======"
-            if Group.objects.filter(name_slug=name_slug).count() > 0:
+            if Group.objects.filter(name_slug=name_slug).count() > 0 and name != "":
                 redirection_url = "http://127.0.0.1:8000/"+name_slug
                 return redirect(redirection_url)
             else:
                 if form.is_valid():
                     group = form.save(commit=False)
+                    if group.name == "":
+                        print "doing something with the missing name..."
+                        random_name = generate_name()
+                        print random_name
+                        group.name = random_name
                     group.name_slug = slugify(group.name)
                     group.created = datetime.datetime.now()
                     group.save()
                     redirection_url = "http://127.0.0.1:8000/"+group.name_slug
                     return redirect(redirection_url)
+
                 else:
-                    print "group form is NOT valid --"
+                    ## DEBUG
+                    print "form is NOT valid"
+                    print " "
                     print form.errors.as_data()
 
     group_name = group_object.name

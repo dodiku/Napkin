@@ -14,16 +14,17 @@ def generate_name():
 random_name = generate_name()
 
 class GroupForm(forms.ModelForm):
-    name = forms.CharField(required=False, max_length=24, help_text=(random_name + "..."), widget=forms.TextInput({ "placeholder": random_name + "..."}), default=random_name)
+    name = forms.CharField(required=False, max_length=24, help_text=(random_name + "..."), widget=forms.TextInput({ "placeholder": "enter group name..."}))
     # name_slug = forms.CharField(widget=forms.HiddenInput(), required=False) ### excluded
     # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False) ### excluded
 
     class Meta:
         model = Group
         exclude = ('name_slug', 'created',)
-    #
+
     # def clean(self):
-    #     if not self.cleaned_data.get('name'):
+    #     if self.cleaned_data.get('name') == "":
+    #         print "=== got empty form for group ==="
     #         self.cleaned_data['name'] = random_name
     #         self.cleaned_data['name_slug'] = slugify(random_name)
     #         print "*** clean ***"
