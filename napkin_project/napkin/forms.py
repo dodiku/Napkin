@@ -14,20 +14,32 @@ def generate_name():
 random_name = generate_name()
 
 class GroupForm(forms.ModelForm):
-    name = forms.CharField(max_length=24, help_text=(random_name + "..."), initial=random_name)
+    name = forms.CharField(required=False, max_length=24, help_text=(random_name + "..."), widget=forms.TextInput({ "placeholder": random_name + "..."}), default=random_name)
     # name_slug = forms.CharField(widget=forms.HiddenInput(), required=False) ### excluded
     # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False) ### excluded
 
     class Meta:
         model = Group
         exclude = ('name_slug', 'created',)
+    #
+    # def clean(self):
+    #     if not self.cleaned_data.get('name'):
+    #         self.cleaned_data['name'] = random_name
+    #         self.cleaned_data['name_slug'] = slugify(random_name)
+    #         print "*** clean ***"
+    #         a = self.cleaned_data['name']
+    #         b = self.cleaned_data['name_slug']
+    #         print a
+    #         print b
+    #         print "*** clean ***"
+    #     return self.cleaned_data
 
 
 
 class PostForm(forms.ModelForm):
     # group = forms.ForeignKey(widget=forms.HiddenInput()) ### excluded
-    url = forms.URLField(required=False, help_text="url...")
-    text = forms.CharField(required=False, max_length=1000, help_text="write a comment...")
+    url = forms.URLField(required=False, help_text="url...", widget=forms.TextInput({ "placeholder": "url..."}))
+    text = forms.CharField(required=False, max_length=1000, help_text="write a comment...", widget=forms.Textarea({ "placeholder": "write a comment..."}))
     # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False, initial=0) ### excluded
 
     class Meta:

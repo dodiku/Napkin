@@ -74,10 +74,12 @@ def group_page(request, group_name_slug):
 
         else:
             form = GroupForm(request.POST)
+            print "======"
             print form.data['name']
             name = form.data['name']
             name_slug = slugify(name)
             print name_slug
+            print "======"
             if Group.objects.filter(name_slug=name_slug).count() > 0:
                 redirection_url = "http://127.0.0.1:8000/"+name_slug
                 return redirect(redirection_url)

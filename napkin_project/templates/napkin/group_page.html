@@ -2,52 +2,54 @@
 
 {% load static %}
 
-<html>
+<html style="background:white;">
     <head>
         {% if group_name %}
           <title>NAPKIN // {{ group_name }}</title>
+          <meta charset = "UTF-8" />
         {% endif %}
         <link href='https://fonts.googleapis.com/css?family=Palanquin:300,500' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
     </head>
 
     <body>
-      <div class="header">
+      <div class="header_container">
 
-        <div>
-          <form action="http://127.0.0.1:8000/">
-            <input type="submit" value="NAPKIN" class="submit-home">
-          </form>
-        </div>
+        <div id="header_content">
+            <form action="http://127.0.0.1:8000/">
+              <input type="submit" value="NAPKIN" class="submit-home">
+            </form>
 
-        <div>
-          <form id="form_header" method="post" action="{% url 'group_page' group_name_slug %}">
+            <form id="form_header" method="post" action="{% url 'group_page' group_name_slug %}">
 
-            {% csrf_token %}
-            {% for hidden in group_form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
+              {% csrf_token %}
+              {% for hidden in group_form.hidden_fields %}
+                  {{ hidden }}
+              {% endfor %}
 
-            {% for field in group_form.visible_fields %}
-                {{ field.errors }}
-                {{ field }}
-            {% endfor %}
+              {% for field in group_form.visible_fields %}
+                  {{ field.errors }}
+                  {{ field }}
+              {% endfor %}
 
-            <input type="submit" name="submit" value="GO" class="submit"/>
-          </form>
+              <input type="submit" name="submit" value="GO" class="submit"/>
+            </form>
+
         </div>
 
       </div>
 
-      <div class="content" id="whitebg">
+      <!-- <div class="content_group">
+        </div> -->
 
+      <div id="group_title">
         {% if group_name %}
-          <h1>{{ group_name }}</h1>
-          {{ created_date }}</br>
+          <span id="title">{{ group_name }}</span></br>
+          <span id="since">{{ created_date }}</span>
         {% endif %}
+      </div>
 
-
-       <div id="form">
+       <div id="form_group">
           <form method="post" novalidate action="{% url 'group_page' group_name_slug %}">
 
             {% csrf_token %}
@@ -57,28 +59,27 @@
 
             {{ post_form.errors }}
 
-            Post a new link (must include at least one of the following):</br>
-            URL: {{ post_form.url }}</br>
-            Comment: {{ post_form.text }}</br>
+            Post new link:</br>
+            <span>{{ post_form.url }}</span></br>
+            <span>{{ post_form.text }}</span></br>
 
-            <input type="submit" name="submit" value="POST" class="submit" required/>
+            <input type="submit" name="submit" value="POST" class="submit-post" required/>
           </form>
-
         </div>
 
-        <div>
+        <div class="content_group">
           {% if posts %}
-          <ul>
             {% for post in posts %}
-            <li><a href="{{ post.url }}" target="_blank">{{ post.url }}</br></a>{{ post.text }}</li>
+            <a id="link_title" href="{{ post.url }}" target="_blank">{{ post.url }}</br></a>
+            <span id="comment">{{ post.text }}</span></br>
+            <span id="since">{{ post.created }}</span></br></br>
             {% endfor %}
-          </ul>
           {% else %}
-            <p>This is a new group. Be the first to post!</p>
+            <p>This is a new napkin.</br>Be the first to post!</p>
           {% endif %}
         </div>
 
-      </div>
+
 
 
       <footer class="footer">
