@@ -309,6 +309,16 @@ textarea:placeholder-shown {
   width:100%;
 }
 
+#post {
+  max-width: 900px;
+  min-width: 200px;
+  border-bottom: solid 1px #EAEAEA;
+  /*background-color: red;*/
+  padding-top: 24px;
+
+
+}
+
 #footer_left {
   float: left;
   padding-left: 3%;

@@ -20,6 +20,8 @@
               <input type="submit" value="NAPKIN" class="submit-home">
             </form>
 
+            <!-- group form start -->
+
             <form id="form_header" method="post" action="{% url 'group_page' group_name_slug %}">
 
               {% csrf_token %}
@@ -35,12 +37,11 @@
               <input type="submit" name="submit" value="GO" class="submit"/>
             </form>
 
+            <!-- group form end -->
+
         </div>
 
       </div>
-
-      <!-- <div class="content_group">
-        </div> -->
 
       <div id="group_title">
         {% if group_name %}
@@ -48,6 +49,8 @@
           <span id="since">{{ created_date }}</span>
         {% endif %}
       </div>
+
+      <!-- post form start -->
 
        <div id="form_group">
           <form method="post" novalidate action="{% url 'group_page' group_name_slug %}">
@@ -57,29 +60,34 @@
                 {{ hidden }}
             {% endfor %}
 
-            {{ post_form.errors }}
-
             Post new link:</br>
             <span>{{ post_form.url }}</span></br>
             <span>{{ post_form.text }}</span></br>
+            <span style="color:red;">{{ post_form.errors.as_text }}</span>
 
             <input type="submit" name="submit" value="POST" class="submit-post" required/>
           </form>
         </div>
 
+        <!-- group form end -->
+
+        <!-- group content start -->
+
         <div class="content_group">
           {% if posts %}
             {% for post in posts %}
-            <a id="link_title" href="{{ post.url }}" target="_blank">{{ post.url }}</br></a>
-            <span id="comment">{{ post.text }}</span></br>
-            <span id="since">{{ post.created }}</span></br></br>
+            <div id="post">
+              <a id="link_title" href="{{ post.url }}" target="_blank">{{ post.url }}</br></a>
+              <span id="comment">{{ post.text }}</span></br>
+              <span id="since">{{ post.created }}</span></br></br>
+            </div>
             {% endfor %}
           {% else %}
             <p>This is a new napkin.</br>Be the first to post!</p>
           {% endif %}
         </div>
 
-
+          <!-- group content end -->
 
 
       <footer class="footer">

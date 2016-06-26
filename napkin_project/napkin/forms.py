@@ -5,6 +5,11 @@ from random_name import get_name
 from django.core.exceptions import ValidationError
 
 
+my_default_errors = {
+    'invalid': 'Please enter a valid URL.'
+}
+
+
 def generate_name():
     for i in range(1, 10):
         name = get_name()
@@ -39,7 +44,7 @@ class GroupForm(forms.ModelForm):
 
 class PostForm(forms.ModelForm):
     # group = forms.ForeignKey(widget=forms.HiddenInput()) ### excluded
-    url = forms.URLField(required=False, help_text="url...", widget=forms.TextInput({ "placeholder": "url..."}))
+    url = forms.URLField(required=False, help_text="url...", widget=forms.TextInput({ "placeholder": "url..."}), error_messages=my_default_errors)
     text = forms.CharField(required=False, max_length=1000, help_text="write a comment...", widget=forms.Textarea({ "placeholder": "write a comment..."}))
     # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False, initial=0) ### excluded
 
@@ -48,7 +53,7 @@ class PostForm(forms.ModelForm):
         exclude = ('group', 'created',)
 
     def clean(self):
-        if self.cleaned_data.get('url') and not self.cleaned_data.get('url').startswith("http://"):
+        if self.cleaned_data.get('url') and not (self.cleaned_data.get('url').startswith("http://") or self.cleaned_data.get('url').startswith("https://")):
             url = "http://" + self.cleaned_data.get('url')
             self.cleaned_data['url'] = url
         return self.cleaned_data
