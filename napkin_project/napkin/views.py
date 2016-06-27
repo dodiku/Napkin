@@ -125,26 +125,6 @@ def group_page(request, group_name_slug):
         first_post = Post.objects.filter(group_id=group_id).order_by('-created').first()
         first_post_date_unformated = first_post.created
         first_post_date = "Since " + first_post_date_unformated.strftime("%B %d, %Y")
-    #     group_name = group_object.name
-    #     posts = Post.objects.filter(group_id=group_id).order_by('-created')
-    #
-    #     if not posts:
-    #         first_post_date = "This Napkin is empty."
-    #     else:
-    #         first_post = Post.objects.filter(group_id=group_id).order_by('-created').first()
-    #         first_post_date_unformated = first_post.created
-    #         first_post_date = "Since " + first_post_date_unformated.strftime("%B %d, %Y")
-
-        # context_dict = {
-        # 'group_name': group_name,
-        # 'created_date': first_post_date,
-        # 'posts': posts,
-        # 'post_form': PostForm(),
-        # 'group_form': GroupForm(),
-        # 'group_id': group_id,
-        # 'group_name_slug': group_name_slug,
-        # }
-
 
     context_dict = {
     'group_name_slug': group_name_slug,
@@ -157,3 +137,7 @@ def group_page(request, group_name_slug):
     }
 
     return render(request, 'napkin/group_page.html', context_dict)
+
+
+def contact(request):
+    return render(request, 'napkin/contact.html',)
