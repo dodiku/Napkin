@@ -139,5 +139,8 @@ def group_page(request, group_name_slug):
     return render(request, 'napkin/group_page.html', context_dict)
 
 
-def contact(request):
+def feedback(request):
     return render(request, 'napkin/contact.html',)
+
+def about(request):
+    return render(request, 'napkin/about.html',)
