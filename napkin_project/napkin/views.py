@@ -140,7 +140,7 @@ def group_page(request, group_name_slug):
 
 
 def feedback(request):
-    return render(request, 'napkin/contact.html',)
+    return render(request, 'napkin/feedback.html',)
 
 def about(request):
     return render(request, 'napkin/about.html',)
