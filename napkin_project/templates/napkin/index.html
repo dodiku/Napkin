@@ -12,6 +12,11 @@
     </head>
 
     <body>
+      <div id="feedback_button">
+          <form action="http://127.0.0.1:8000/feedback">
+            <input type="submit" value="SEND FEEDBACK" class="submit-feedback">
+          </form>
+      </div>
       <div class="content">
         <div id="main_block">
           <img id="center" alt="NAPKIN logo" src="{% static "images/napkin_logo.svg" %}" alt="NAPKIN logo" />
@@ -40,7 +45,7 @@
 
       <footer class="footer">
           <div id="footer_left">
-              About NAPKIN | Contact us!
+              <a id="about_link" href="http://127.0.0.1:8000/about/">About NAPKIN</a>
           </div>
           <div id="footer_right">
                Copyright 2016 Napkin. All Rights Reserved.
