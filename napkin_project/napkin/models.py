@@ -16,5 +16,7 @@ class Group(models.Model):
 class Post(models.Model):
     group = models.ForeignKey(Group)
     url = models.URLField(blank=True)
+    # title = models.CharField(blank=True)
+    # home_url = (blank=True)
     text = models.CharField(max_length=1000,blank=False)
     created = models.DateTimeField(auto_now_add=True)

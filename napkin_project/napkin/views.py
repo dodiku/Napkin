@@ -7,6 +7,9 @@ from django.template.defaultfilters import slugify
 import datetime
 from time import strftime
 from random_name import get_name
+# from goose import Goose
+from newspaper import Article
+import tldextract
 
 
 def generate_name():
@@ -74,6 +77,56 @@ def group_page(request, group_name_slug):
                 print post.url
                 print "post text:"
                 print post.text
+                #
+                # print "=== THIS IS GOOSE: START ==="
+                #
+                # url = post.url
+                # g = Goose()
+                # print ""
+                # print "goose article.title:"
+                # print ""
+                # article = g.extract(url=url)
+                # bla1 = article.title
+                # print bla1
+                # print ""
+                # print "goose article.cleaned_text[:150]:"
+                # print ""
+                # bla2 = article.cleaned_text[:150]
+                # print bla2
+                # print bla1
+                #
+                # print "=== THIS IS GOOSE: END ==="
+
+                print "=== THIS IS NEWSPAPER: START ==="
+
+                print ""
+                article = Article(post.url)
+                article.download()
+                article.parse()
+                print "title:"
+                print(article.title)
+                # print ""
+                # print "text:"
+                # print(article.text)
+                # print ""
+
+                print "=== THIS IS NEWSPAPER: END ==="
+                print ""
+                print ""
+
+
+                print "=== THIS IS tldextract: START ==="
+
+                brand = tldextract.extract(post.url)
+                brand = brand.registered_domain
+                print brand
+                brand = "http://www." + brand
+                print brand
+
+
+                print "=== THIS IS tldextract: END ==="
+
+
                 if post.url or post.text:
                     post.group = group_object
                     post.created = datetime.datetime.now()
