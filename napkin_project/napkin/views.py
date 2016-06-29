@@ -73,42 +73,6 @@ def group_page(request, group_name_slug):
             form = PostForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=False)
-                #
-                #     # title = models.CharField(blank=True) // post.title
-                #     # home_url = (blank=True) // post.home_url
-                #
-                # print "post url:"
-                # print post.url
-                # print "post text:"
-                # print post.text
-                # print "=== THIS IS NEWSPAPER: START ==="
-                #
-                # print ""
-                # article = Article(post.url)
-                # article.download()
-                # article.parse()
-                # print "title:"
-                # print(article.title)
-                # # print ""
-                # # print "text:"
-                # # print(article.text)
-                # # print ""
-                #
-                # print "=== THIS IS NEWSPAPER: END ==="
-                # print ""
-                # print ""
-                #
-                #
-                # print "=== THIS IS tldextract: START ==="
-                #
-                # brand = tldextract.extract(post.url)
-                # brand = brand.registered_domain
-                # print brand
-                # brand = "http://www." + brand
-                # print brand
-                #
-                #
-                # print "=== THIS IS tldextract: END ==="
 
 
                 if post.url or post.text:
