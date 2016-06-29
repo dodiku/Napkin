@@ -73,66 +73,75 @@ def group_page(request, group_name_slug):
             form = PostForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=False)
-                print "post url:"
-                print post.url
-                print "post text:"
-                print post.text
                 #
-                # print "=== THIS IS GOOSE: START ==="
+                #     # title = models.CharField(blank=True) // post.title
+                #     # home_url = (blank=True) // post.home_url
                 #
-                # url = post.url
-                # g = Goose()
-                # print ""
-                # print "goose article.title:"
-                # print ""
-                # article = g.extract(url=url)
-                # bla1 = article.title
-                # print bla1
-                # print ""
-                # print "goose article.cleaned_text[:150]:"
-                # print ""
-                # bla2 = article.cleaned_text[:150]
-                # print bla2
-                # print bla1
+                # print "post url:"
+                # print post.url
+                # print "post text:"
+                # print post.text
+                # print "=== THIS IS NEWSPAPER: START ==="
                 #
-                # print "=== THIS IS GOOSE: END ==="
-
-                print "=== THIS IS NEWSPAPER: START ==="
-
-                print ""
-                article = Article(post.url)
-                article.download()
-                article.parse()
-                print "title:"
-                print(article.title)
                 # print ""
-                # print "text:"
-                # print(article.text)
+                # article = Article(post.url)
+                # article.download()
+                # article.parse()
+                # print "title:"
+                # print(article.title)
+                # # print ""
+                # # print "text:"
+                # # print(article.text)
+                # # print ""
+                #
+                # print "=== THIS IS NEWSPAPER: END ==="
                 # print ""
-
-                print "=== THIS IS NEWSPAPER: END ==="
-                print ""
-                print ""
-
-
-                print "=== THIS IS tldextract: START ==="
-
-                brand = tldextract.extract(post.url)
-                brand = brand.registered_domain
-                print brand
-                brand = "http://www." + brand
-                print brand
-
-
-                print "=== THIS IS tldextract: END ==="
+                # print ""
+                #
+                #
+                # print "=== THIS IS tldextract: START ==="
+                #
+                # brand = tldextract.extract(post.url)
+                # brand = brand.registered_domain
+                # print brand
+                # brand = "http://www." + brand
+                # print brand
+                #
+                #
+                # print "=== THIS IS tldextract: END ==="
 
 
                 if post.url or post.text:
                     post.group = group_object
                     post.created = datetime.datetime.now()
+
+                    if post.url:
+                        # getting article title using newspaper
+                        article = Article(post.url)
+                        article.download()
+                        article.parse()
+                        if article.title:
+                            post.title = article.title
+                        else:
+                            post.title = post.url
+                        print "post title:"
+                        print post.title
+
+                        # getting homepage name and url using tldextract
+                        site_name = tldextract.extract(post.url)
+                        site_name = site_name.registered_domain
+                        post.site_name = site_name
+
+                        site_url = "http://www." + site_name
+                        post.site_url = site_url
+                        print "home url:"
+                        print post.site_url
+
                     post.save()
+
                 redirection_url = "http://127.0.0.1:8000/"+group_name_slug
                 return redirect(redirection_url)
+
             else:
                 print "post form is NOT valid --"
                 print form.errors
