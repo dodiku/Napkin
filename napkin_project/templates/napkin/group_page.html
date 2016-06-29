@@ -87,6 +87,7 @@
             {% for post in posts %}
             <div id="post">
               <a id="link_title" href="{{ post.url }}" target="_blank">{{ post.title }}</a></br>
+              <img alt="{{ post.site_name }}" src="http://www.google.com/s2/favicons?domain_url={{ post.site_url }}" alt="{{ post.site_name }}" />
               <a id="since" href="{{ post.site_url }}" target="_blank">{{ post.site_name }}</a></br>
               <span id="comment">{{ post.text }}</span></br>
               <span id="since">{{ post.created }}</span></br></br>
