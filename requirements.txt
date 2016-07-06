@@ -9,10 +9,14 @@ jieba==0.35
 lxml==3.3.5
 newspaper==0.0.9.8
 nltk==2.0.5
+pbr==1.10.0
 Pillow==2.5.1
 psycopg2==2.6.1
 python-dateutil==2.4.0
 PyYAML==3.11
 requests==2.3.0
-six==1.7.3
+six==1.10.0
+stevedore==1.15.0
 tldextract==1.5.1
+virtualenv==15.0.2
+virtualenv-clone==0.2.6
