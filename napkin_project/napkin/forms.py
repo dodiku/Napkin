@@ -9,17 +9,16 @@ my_default_errors = {
     'invalid': 'Please enter a valid URL.'
 }
 
-
 def generate_name():
     for i in range(1, 10):
         name = get_name()
         if not Group.objects.filter(name=name).first():
             return name
 
-random_name = generate_name()
+
 
 class GroupForm(forms.ModelForm):
-    name = forms.CharField(required=False, max_length=24, help_text=(random_name + "..."), widget=forms.TextInput({ "placeholder": "enter group name..."}))
+    name = forms.CharField(required=False, max_length=24, help_text=(lambda x: generate_name() + '...'), widget=forms.TextInput({ "placeholder": "enter group name..."}))
     # name_slug = forms.CharField(widget=forms.HiddenInput(), required=False) ### excluded
     # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False) ### excluded
 

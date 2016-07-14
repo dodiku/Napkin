@@ -6,11 +6,11 @@ class Group(models.Model):
     name = models.CharField(max_length=24, unique=True, blank=False)
     name_slug = models.SlugField(blank=True)
     created = models.DateTimeField(auto_now_add=True, blank=True)
+    asaf = models.TextField() ### this is a test
 
     def save(self, *args, **kwargs):
         self.name_slug = slugify(self.name)
         super(Group, self).save(*args, **kwargs)
-
 
 
 class Post(models.Model):
