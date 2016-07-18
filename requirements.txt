@@ -1,6 +1,7 @@
 BeautifulSoup==3.2.1
 beautifulsoup4==4.3.2
 cssselect==0.9.1
+dj-database-url==0.4.1
 Django==1.9.6
 feedfinder2==0.0.1
 feedparser==5.1.3
