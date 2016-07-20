@@ -60,6 +60,11 @@ textarea:placeholder-shown {
   font-size: 14px;
 }
 
+input, textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
 .content {
   min-height: 100%;
   margin-top: 60px;
