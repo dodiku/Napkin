@@ -88,8 +88,8 @@ def group_page(request, group_name_slug):
                             post.title = article.title
                         else:
                             post.title = post.url
-                        print "post title:"
-                        print post.title
+                        # print "post title:"
+                        # print post.title
 
                         # getting homepage name and url using tldextract
                         site_name = tldextract.extract(post.url)
