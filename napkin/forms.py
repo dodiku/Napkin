@@ -16,14 +16,14 @@ def generate_name():
             return name
 
 class GroupForm(forms.ModelForm):
-    name = forms.CharField(required=False, max_length=24, help_text=(lambda x: generate_name() + '...'), widget=forms.TextInput({ "placeholder": "enter group name..."}))
+    name = forms.CharField(required=False, max_length=24, help_text=(lambda x: generate_name() + '...'), widget=forms.TextInput({ "placeholder": "enter list name..."}))
     # name_slug = forms.CharField(widget=forms.HiddenInput(), required=False) ### excluded
     # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False) ### excluded
 
     class Meta:
         model = Group
         exclude = ('name_slug', 'created',)
-        
+
 
 
 class PostForm(forms.ModelForm):
