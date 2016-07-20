@@ -5,6 +5,7 @@
 *.sqlite
 *.sqlite3
 *.db
+.venv
 /napkin-env
 /napkin_env
 napkin_project/db.sqlite3
