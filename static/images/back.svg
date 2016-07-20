@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <pattern id="pattern-1" width="30" height="30" x="-30" y="-30" patternUnits="userSpaceOnUse">
+            <use xlink:href="#image-2"></use>
+        </pattern>
+        <image id="image-2" width="30" height="30" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAPtJREFUSA3t1lEOgyAMANC1x9oOoQnfejj3bZRDbLfYUZBRk5kSRQ1C+ZlfLGv6WuhwMAzDBxHbqqpet8AzjuPdWvtMGQc5kp4pEqjJEvgMl8AXWBr3YEl8BUvhm7AEHoRz46i1fhCy9dR1/QaAZpqmLnUc5kh6psj/zZX0RbB3Z3tTLXlnI5/m3xRTpX3fH077lTgPpiIIN8Y07t3bHeFX4ryt5t0TSrj7ubVKqeCfhNi4IExFxCblDfA1z4f0gX/J19QpdXy07TFxLuf+WcYkPdMM8PZznCXfQb6ez7gEvgyXNL7AtA2SuAdL4itYCt+EJfAgnBsvdnN9AWwqyiQ7K9HsAAAAAElFTkSuQmCC"></image>
+    </defs>
+    <g id="work" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-4" fill="url(#pattern-1)">
+            <rect id="Rectangle-43" x="0" y="0" width="1024" height="1634"></rect>
+        </g>
+    </g>
+</svg>

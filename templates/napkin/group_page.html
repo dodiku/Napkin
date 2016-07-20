@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html style="background:white;">
+    <head>
+        {% if group_name %}
+          <title>NAPKIN // {{ group_name }}</title>
+          <meta charset = "UTF-8" />
+        {% endif %}
+        <link href='https://fonts.googleapis.com/css?family=Palanquin:300,500' rel='stylesheet' type='text/css'>
+        <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
+        <link rel="shortcut icon" type="image/png" href="{% static "images/favicon.png" %}">
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+
+      <div class="header_container">
+
+        <div id="feedback_button">
+            <form action="http://127.0.0.1:8000/feedback">
+              <input type="submit" value="SEND FEEDBACK" class="submit-feedback">
+            </form>
+        </div>
+
+        <div id="header_content">
+            <form action="http://127.0.0.1:8000/">
+              <input type="submit" value="NAPKIN" class="submit-home">
+            </form>
+
+            <!-- group form start -->
+
+            <form id="form_header" method="post" action="{% url 'group_page' group_name_slug %}">
+
+              {% csrf_token %}
+              {% for hidden in group_form.hidden_fields %}
+                  {{ hidden }}
+              {% endfor %}
+
+              {% for field in group_form.visible_fields %}
+                  {{ field.errors }}
+                  {{ field }}
+              {% endfor %}
+
+              <input type="submit" name="submit" value="GO" class="submit"/>
+            </form>
+
+            <!-- group form end -->
+
+        </div>
+
+      </div>
+
+      <div id="group_title">
+        {% if group_name %}
+          <span id="title">{{ group_name }}</span></br>
+          <span id="since">{{ created_date }}</span>
+        {% endif %}
+      </div>
+
+      <!-- post form start -->
+
+       <div id="form_group">
+          <form method="post" novalidate action="{% url 'group_page' group_name_slug %}">
+
+            {% csrf_token %}
+            {% for hidden in post_form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            Post new link:</br>
+            <span>{{ post_form.url }}</span></br>
+            <span>{{ post_form.text }}</span></br>
+            <span style="color:red;">{{ post_form.errors.as_text }}</span>
+
+            <input type="submit" name="submit" value="POST" class="submit-post" required/>
+          </form>
+        </div>
+
+        <!-- group form end -->
+
+        <!-- group content start -->
+
+        <div class="content_group">
+          {% if posts %}
+            {% for post in posts %}
+            <div id="post">
+              {% if post.url %}
+                <a id="link_title" href="{{ post.url }}" target="_blank">{{ post.title }}</a></br>
+                <img alt="{{ post.site_name }}" src="http://www.google.com/s2/favicons?domain_url={{ post.site_url }}" alt="{{ post.site_name }}" />
+                <a id="since" href="{{ post.site_url }}" target="_blank">{{ post.site_name }}</a></br>
+              {% endif %}
+              {% if post.text %}
+                <span id="comment">{{ post.text }}</span></br>
+              {% endif %}
+              <span id="since">{{ post.created }}</span></br></br>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p>This is a new napkin.</br>Be the first to post!</p>
+          {% endif %}
+        </div>
+
+          <!-- group content end -->
+
+
+        <footer class="footer">
+            <div id="footer_left">
+                <a id="about_link" href="http://127.0.0.1:8000/about/">About NAPKIN</a>
+            </div>
+            <div id="footer_right">
+                 Copyright 2016 Napkin. All Rights Reserved.
+            </div>
+        </footer>
+
+    </body>
+
+</html>

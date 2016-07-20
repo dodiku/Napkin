@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>NAPKIN: About</title>
+        <meta charset = "UTF-8" />
+        <link href='https://fonts.googleapis.com/css?family=Palanquin:300,500' rel='stylesheet' type='text/css'>
+        <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
+        <link rel="shortcut icon" type="image/png" href="{% static "images/favicon.png" %}">
+    </head>
+
+    <body>
+      <div id="feedback_button">
+          <form action="http://127.0.0.1:8000/feedback">
+            <input type="submit" value="SEND FEEDBACK" class="submit-feedback">
+          </form>
+      </div>
+
+
+      <div id="header_content">
+          <form action="http://127.0.0.1:8000/">
+            <input type="submit" value="NAPKIN" class="submit-home">
+          </form>
+      </div>
+
+        <div id="main_block">
+
+          <span style="font-weight:500">Dror: </span><span style="font-style:italic">"Lately, I thought about that I love to receive links to good articles from you. I have some more people to whom I send content, and receive as well. You probably have some more of your own.</br>
+            What if we build a site that will allow us to share content with all these interesting people?</br>
+The site will have only one input field for a code. To view content from your friends, just enter the code."</span></br>
+          <span style="font-weight:500">Asaf: </span><span style="font-style:italic">"Cool! Let's do it!"</span></br>
+          <span style="font-weight:500">Dror: </span><span style="font-style:italic">"But let's not make it social."</span></br>
+          <span style="font-weight:500">Asaf: </span><span style="font-style:italic">"Of course not."</span></br>
+          <span style="font-weight:500">Dror: </span><span style="font-style:italic">"No registration. Not signup."</span></br>
+          <span style="font-weight:500">Asaf: </span><span style="font-style:italic">"Simple. I love it."</span></br>
+          <span style="font-weight:500">Asaf: </span><span style="font-style:italic">"Sounds like a great idea! Let's build it!"</span></br>
+          <span style="font-weight:500">Dror: </span><span style="font-style:italic">"How should we call it?"</span></br>
+          <span style="font-weight:500">Asaf: </span><span style="font-style:italic">"FatCat. or LinkHub."</span></br>
+          <span style="font-weight:500">Dror: </span><span style="font-style:italic">"Awesome."</span></br></br>
+
+          <span>NAPKIN was created to give individuals, who save and share internet content, an easy tool to generate ad-hoc lists, or collaborative and continuous lists of content.</span></br>
+          <span>Use it as you will, and make of it what you want.</span></br></br>
+          <span>Don't forget to <a style="background-color:#00FFB1" href="http://127.0.0.1:8000/feedback/">share your feedback with us</a>, so we will know how to improve it.</span></br></br>
+
+          <span class="subtitle">NAPKIN was designed and developed by Dror Ayalon (<a href="http://twitter.com/drorayalon">@drorayalon</a>) and Asaf Geva (<a href="http://github.com/asafge">asafge</a>).</span></br>
+
+        </div>
+
+
+      <footer class="footer">
+          <div id="footer_left">
+              <a id="about_link" href="http://127.0.0.1:8000/about/">About NAPKIN</a>
+          </div>
+          <div id="footer_right">
+               Copyright 2016 Napkin. All Rights Reserved.
+          </div>
+      </footer>
+    </body>
+
+</html>
