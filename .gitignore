@@ -10,5 +10,8 @@
 /napkin-env
 /napkin_env
 napkin_project/db.sqlite3
-
-*.sqlite3
+venv
+*.pyc
+staticfiles
+.env
+db.sqlite3
