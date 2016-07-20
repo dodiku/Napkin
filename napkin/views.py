@@ -43,7 +43,7 @@ def index(request):
                 group.name_slug = slugify(group.name)
                 group.created = datetime.datetime.now()
                 group.save()
-                redirection_url = "https://napkin-project.herokuapp.com"+group.name_slug
+                redirection_url = "https://napkin-project.herokuapp.com/"+group.name_slug
                 return redirect(redirection_url)
 
             else:

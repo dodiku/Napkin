@@ -23,20 +23,7 @@ class GroupForm(forms.ModelForm):
     class Meta:
         model = Group
         exclude = ('name_slug', 'created',)
-
-    # def clean(self):
-    #     if self.cleaned_data.get('name') == "":
-    #         print "=== got empty form for group ==="
-    #         self.cleaned_data['name'] = random_name
-    #         self.cleaned_data['name_slug'] = slugify(random_name)
-    #         print "*** clean ***"
-    #         a = self.cleaned_data['name']
-    #         b = self.cleaned_data['name_slug']
-    #         print a
-    #         print b
-    #         print "*** clean ***"
-    #     return self.cleaned_data
-
+        
 
 
 class PostForm(forms.ModelForm):
