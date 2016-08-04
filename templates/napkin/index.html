@@ -41,6 +41,23 @@
               <input type="submit" name="submit" value="GO" class="submit"/>
             </form>
           </div>
+          <div>
+
+          {% if popular_groups %}
+            <div> Popular groups: </div>
+            <div>
+            <ul>
+
+            {% for group in popular_groups %}
+              <li><a href="http://127.0.0.1:8000/{{ group.name }}">{{ group.name }}</a></li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+
+
+          </div>
         </div>
       </div>
       <!-- GOOGLE ANALYTICS STARTS -->

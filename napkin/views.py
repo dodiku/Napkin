@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
-from django.db.models import Min
+from django.db.models import Min, Count
 from napkin.forms import GroupForm, PostForm
 from napkin.models import Group, Post
 from django.template.defaultfilters import slugify
@@ -10,6 +10,7 @@ from random_name import get_name
 # from goose import Goose
 from newspaper import Article
 import tldextract
+from operator import itemgetter
 # from django.utils import timezone
 
 
@@ -59,13 +60,35 @@ def index(request):
 
     else:
 
-        # getting all posts that were created during last 30 days
+        # creating a list of dictioneries that includes the names of the groups and the number of new posts
+        popular_groups = []
+        all_groups = Group.objects.all()
         last_month = datetime.datetime.today()-datetime.timedelta(days=30)
-        tempale = Post.objects.filter(created__gt=last_month)
-        print ("this is the return value:")
-        print (tempale)
-        form = GroupForm()
-    return render(request, 'napkin/index.html', {'form': form})
+
+        i = 0
+        for item in all_groups:
+            postCount = Post.objects.filter(created__gt=last_month, group=item.id).aggregate(Count('group'))
+            postCount = postCount['group__count']
+            if postCount != 0:
+                obj = {
+                'name': all_groups[i].name,
+                'post_count': postCount,
+                }
+                popular_groups.append(obj)
+            i = i + 1
+
+        # soring the list by post_count
+        popular_groups = sorted(popular_groups, key=itemgetter('post_count'), reverse=True)
+        popular_groups = popular_groups[:5]
+        print (popular_groups)
+
+        # context dictionery
+        context_dict = {
+        'popular_groups': popular_groups,
+        'form': GroupForm(), # creating an empty form
+        }
+
+    return render(request, 'napkin/index.html', context_dict)
 
 
 def group_page(request, group_name_slug):
