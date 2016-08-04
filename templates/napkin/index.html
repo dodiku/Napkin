@@ -44,12 +44,12 @@
           <div>
 
           {% if popular_groups %}
-            <div> Popular groups: </div>
+            <div> Most active napkins: </div>
             <div>
             <ul>
 
             {% for group in popular_groups %}
-              <li><a href="http://127.0.0.1:8000/{{ group.name }}">{{ group.name }}</a></li>
+              <li><a href="{{ group.url }}">{{ group.name }}</a></li>
             {% endfor %}
             </ul>
           {% endif %}

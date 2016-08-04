@@ -72,6 +72,7 @@ def index(request):
             if postCount != 0:
                 obj = {
                 'name': all_groups[i].name,
+                'url': env_url + all_groups[i].name_slug,
                 'post_count': postCount,
                 }
                 popular_groups.append(obj)
