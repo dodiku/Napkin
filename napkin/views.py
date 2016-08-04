@@ -12,6 +12,10 @@ from newspaper import Article
 import tldextract
 
 
+# env_url = "http://www.thisisnapkin.com/"
+env_url = "http://127.0.0.1:8000/"
+
+
 def generate_name():
     for i in range(1, 10):
         name = get_name()
@@ -30,7 +34,7 @@ def index(request):
         name_slug = slugify(name)
         print name_slug
         if Group.objects.filter(name_slug=name_slug).count() > 0 and name != "":
-            redirection_url = "http://www.thisisnapkin.com/"+name_slug
+            redirection_url = env_url+name_slug
             return redirect(redirection_url)
         else:
             if form.is_valid():
@@ -43,7 +47,7 @@ def index(request):
                 group.name_slug = slugify(group.name)
                 group.created = datetime.datetime.now()
                 group.save()
-                redirection_url = "http://www.thisisnapkin.com/"+group.name_slug
+                redirection_url = env_url+group.name_slug
                 return redirect(redirection_url)
 
             else:
@@ -103,7 +107,7 @@ def group_page(request, group_name_slug):
 
                     post.save()
 
-                redirection_url = "http://www.thisisnapkin.com/"+group_name_slug
+                redirection_url = env_url+group_name_slug
                 return redirect(redirection_url)
 
             else:
@@ -118,7 +122,7 @@ def group_page(request, group_name_slug):
             name_slug = slugify(name)
             print name_slug
             if Group.objects.filter(name_slug=name_slug).count() > 0 and name != "":
-                redirection_url = "http://www.thisisnapkin.com/"+name_slug
+                redirection_url = env_url+name_slug
                 return redirect(redirection_url)
             else:
                 if form.is_valid():
@@ -131,7 +135,7 @@ def group_page(request, group_name_slug):
                     group.name_slug = slugify(group.name)
                     group.created = datetime.datetime.now()
                     group.save()
-                    redirection_url = "http://www.thisisnapkin.com/"+group.name_slug
+                    redirection_url = env_url+group.name_slug
                     return redirect(redirection_url)
 
                 else:
