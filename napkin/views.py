@@ -10,6 +10,7 @@ from random_name import get_name
 # from goose import Goose
 from newspaper import Article
 import tldextract
+# from django.utils import timezone
 
 
 # env_url = "http://www.thisisnapkin.com/"
@@ -57,6 +58,12 @@ def index(request):
                 print form.errors.as_data()
 
     else:
+
+        # getting all posts that were created during last 30 days
+        last_month = datetime.datetime.today()-datetime.timedelta(days=30)
+        tempale = Post.objects.filter(created__gt=last_month)
+        print ("this is the return value:")
+        print (tempale)
         form = GroupForm()
     return render(request, 'napkin/index.html', {'form': form})
 
