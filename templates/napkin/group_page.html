@@ -39,7 +39,8 @@
         <div class="group_title">
           {% if group_name %}
             <span class="title">{{ group_name }}</span></br>
-            <span class="since">{{ created_date }}</span>
+            <span class="since">{{ post_count }} posts</span></br>
+            <span class="since">{{ created_date }}</span></br>
           {% endif %}
         </div>
 
@@ -69,6 +70,7 @@
         <!-- group content end -->
 
         <!-- post form start -->
+        <div class="side">
         <div class="post_container">
           <div class="form_group">
              <form method="post" style="width:300px;" novalidate action="{% url 'group_page' group_name_slug %}">
@@ -88,6 +90,21 @@
            </div>
         </div>
         <!-- group form end -->
+
+        <div class="email_container">
+          <div class="form_group">
+            Get updates about new content on this list:
+             <form method="post" style="width:300px;" novalidate action="{% url 'group_page' group_name_slug %}">
+               <input id="id_url" maxlength="24" name="name" placeholder="email address..." type="email">
+
+               <span style="color:red;">{{ post_form.errors.as_text }}</span>
+               <br>
+               <input type="submit" name="submit" value="SUBSCRIBE" class="email" required/>
+             </form>
+           </div>
+        </div>
+      </div>
+
 
 
       </div>

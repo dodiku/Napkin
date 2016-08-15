@@ -187,11 +187,16 @@ def group_page(request, group_name_slug):
         first_post_date_unformated = first_post.created
         first_post_date = "Since " + first_post_date_unformated.strftime("%B %d, %Y")
 
+        # getting number of posts in group_id
+        post_count = Post.objects.filter(group_id=group_id).count()
+        print post_count
+
     context_dict = {
     'group_name_slug': group_name_slug,
     'group_id': group_id,
     'group_name': group_name,
     'posts': posts,
+    'post_count': post_count,
     'created_date': first_post_date,
     'post_form': post_form,
     'group_form': group_form,
