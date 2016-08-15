@@ -8,6 +8,7 @@
           <title>NAPKIN // {{ group_name }}</title>
           <meta charset = "UTF-8" />
         {% endif %}
+        <meta name="viewport" content="width=device-width">
         <link href='https://fonts.googleapis.com/css?family=Palanquin:300,500' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
         <link rel="shortcut icon" type="image/png" href="{% static "images/favicon.png" %}">
@@ -18,20 +19,87 @@
 
       <div class="header_container">
 
-        <div id="feedback_button">
+        <div class="header_content">
+            <form action="http://www.thisisnapkin.com/">
+              <input type="submit" value="NAPKIN" class="submit-home">
+            </form>
+          </div>
+
+        <div class="feedback_button">
             <form action="http://www.thisisnapkin.com/feedback">
               <input type="submit" value="SEND FEEDBACK" class="submit-feedback">
             </form>
         </div>
 
-        <div id="header_content">
-            <form action="http://www.thisisnapkin.com/">
-              <input type="submit" value="NAPKIN" class="submit-home">
-            </form>
+      </div>
+
+
+      <div class="group_page_container">
+
+        <div class="group_title">
+          {% if group_name %}
+            <span class="title">{{ group_name }}</span></br>
+            <span class="since">{{ created_date }}</span>
+          {% endif %}
+        </div>
+
+        <!-- group content start -->
+        <div class="group_container">
+
+          <div class="post_list">
+            {% if posts %}
+              {% for post in posts %}
+              <div class="post">
+                {% if post.url %}
+                  <a class="link_title" href="{{ post.url }}" target="_blank">{{ post.title }}</a></br>
+                  <img style="vertical-align:middle;" alt="{{ post.site_name }}" src="http://www.google.com/s2/favicons?domain_url={{ post.site_url }}" alt="{{ post.site_name }}" />
+                  <a class="domain" href="{{ post.site_url }}" target="_blank">{{ post.site_name }}</a></br>
+                {% endif %}
+                {% if post.text %}
+                  <span class="comment">{{ post.text }}</span></br>
+                {% endif %}
+                <span class="since">{{ post.created }}</span></br></br>
+              </div>
+              {% endfor %}
+            {% else %}
+              <p>This is a new napkin.</br>Be the first to post!</p>
+            {% endif %}
+          </div>
+        </div>
+        <!-- group content end -->
+
+        <!-- post form start -->
+        <div class="post_container">
+          <div class="form_group">
+             <form method="post" style="width:300px;" novalidate action="{% url 'group_page' group_name_slug %}">
+
+               {% csrf_token %}
+               {% for hidden in post_form.hidden_fields %}
+                   {{ hidden }}
+               {% endfor %}
+
+               Post new link:</br>
+               <span>{{ post_form.url }}</span></br>
+               <span>{{ post_form.text }}</span></br>
+               <span style="color:red;">{{ post_form.errors.as_text }}</span>
+
+               <input type="submit" name="submit" value="POST" class="submit-post" required/>
+             </form>
+           </div>
+        </div>
+        <!-- group form end -->
+
+
+      </div>
+
+
+
+
+
 
             <!-- group form start -->
 
-            <form id="form_header" method="post" action="{% url 'group_page' group_name_slug %}">
+            <!-- <form class="form_header" method="post" action="{% url 'group_page' group_name_slug %}">
 
               {% csrf_token %}
               {% for hidden in group_form.hidden_fields %}
@@ -44,65 +112,22 @@
               {% endfor %}
 
               <input type="submit" name="submit" value="GO" class="submit"/>
-            </form>
+            </form> -->
 
             <!-- group form end -->
 
-        </div>
 
-      </div>
 
-      <div id="group_title">
-        {% if group_name %}
-          <span id="title">{{ group_name }}</span></br>
-          <span id="since">{{ created_date }}</span>
-        {% endif %}
-      </div>
 
-      <!-- post form start -->
 
-       <div id="form_group">
-          <form method="post" novalidate action="{% url 'group_page' group_name_slug %}">
 
-            {% csrf_token %}
-            {% for hidden in post_form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
 
-            Post new link:</br>
-            <span>{{ post_form.url }}</span></br>
-            <span>{{ post_form.text }}</span></br>
-            <span style="color:red;">{{ post_form.errors.as_text }}</span>
 
-            <input type="submit" name="submit" value="POST" class="submit-post" required/>
-          </form>
-        </div>
 
-        <!-- group form end -->
 
-        <!-- group content start -->
 
-        <div class="content_group">
-          {% if posts %}
-            {% for post in posts %}
-            <div id="post">
-              {% if post.url %}
-                <a id="link_title" href="{{ post.url }}" target="_blank">{{ post.title }}</a></br>
-                <img alt="{{ post.site_name }}" src="http://www.google.com/s2/favicons?domain_url={{ post.site_url }}" alt="{{ post.site_name }}" />
-                <a id="since" href="{{ post.site_url }}" target="_blank">{{ post.site_name }}</a></br>
-              {% endif %}
-              {% if post.text %}
-                <span id="comment">{{ post.text }}</span></br>
-              {% endif %}
-              <span id="since">{{ post.created }}</span></br></br>
-            </div>
-            {% endfor %}
-          {% else %}
-            <p>This is a new napkin.</br>Be the first to post!</p>
-          {% endif %}
-        </div>
 
-          <!-- group content end -->
+
 
           <!-- GOOGLE ANALYTICS STARTS -->
           <script>

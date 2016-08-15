@@ -16,7 +16,7 @@ def generate_name():
             return name
 
 class GroupForm(forms.ModelForm):
-    name = forms.CharField(required=False, max_length=24, help_text=(lambda x: generate_name() + '...'), widget=forms.TextInput({ "placeholder": "enter list name..."}))
+    name = forms.CharField(required=False, max_length=24, help_text=(lambda x: generate_name() + '...'), widget=forms.TextInput({ "placeholder": "enter list name...", 'class' : 'main_input'}))
     # name_slug = forms.CharField(widget=forms.HiddenInput(), required=False) ### excluded
     # created = forms.DateTimeField(widget=forms.HiddenInput(), required=False) ### excluded
 

@@ -6,39 +6,42 @@
     <head>
         <title>NAPKIN: Share Content</title>
         <meta charset = "UTF-8" />
+        <meta name="viewport" content="width=device-width">
         <link href='https://fonts.googleapis.com/css?family=Palanquin:300,500' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
         <link rel="shortcut icon" type="image/png" href="{% static "images/favicon.png" %}">
     </head>
 
     <body>
-      <div id="feedback_button">
+      <div class="feedback_button">
           <form action="http://www.thisisnapkin.com/feedback">
             <input type="submit" value="SEND FEEDBACK" class="submit-feedback">
           </form>
       </div>
       <div class="content">
-        <div id="main_block">
+        <div class="main_block">
           <img id="center" alt="NAPKIN logo" src="{% static "images/napkin_logo.svg" %}" alt="NAPKIN logo" />
           <h1 class="title1" id="center" alt="NAPKIN is a place where you can list links of content.">NAPKIN is a place where you can list links of content.</h1>
           <span class="subtitle" id="center" alt="Share your list url, so your friends will contribute their content.">Share your list url, so your friends will contribute their content.</span>
           <span class="subtitle" id="center" alt="No registration. No signup.">No registration. No signup.</span>
-          <div id="form">
+          <div class="form">
             <span style="font-size:14px">Create a new list (or go to an existing one):</span>
-            <form  method="post" action="{% url 'index' %}">
+            <div>
+              <form  method="post" action="{% url 'index' %}">
 
-              {% csrf_token %}
-              {% for hidden in form.hidden_fields %}
-                  {{ hidden }}
-              {% endfor %}
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
 
-              {% for field in form.visible_fields %}
-                  {{ field.errors }}
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
 
-                  {{ field }}
-              {% endfor %}
+                    {{ field }}
+                {% endfor %}
 
-              <input type="submit" name="submit" value="GO" class="submit"/>
+                <input type="submit" name="submit" value="GO" class="submit"/>
+            </div>
             </form>
           </div>
           <div>
