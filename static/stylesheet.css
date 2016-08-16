@@ -528,25 +528,27 @@ a.link_title:active {
   width: 48%;
   /*background-color: blue;*/
   text-align: left;
-  color: #00FFB1;
-  text-shadow: 1px 1px 0px #222222;
+  color: #00EFA6;
 }
 
 a.popular_link:link {
     text-decoration: none;
-    color: #00FFB1;
-    text-shadow: 1px 1px 0px #222222;
+    color: #00EFA6;
+    /*text-shadow: 1px 1px 0px rbga(34,34,34,0.2);*/
+    /*text-shadow: 1px 1px 0px #C8C8C8;*/
+    text-shadow: 1px 1px 0px white;
     font-size: 18px;
 }
 
 a.popular_link:visited {
     text-decoration: none;
-    color: #00FFB1;
-    text-shadow: 1px 1px 0px #222222;
+    color: #00EFA6;
+    /*text-shadow: 1px 1px 0px #222222;*/
+    text-shadow: 1px 1px 0px white;
 }
 
 a.popular_link:hover {
-  color: #00FFB1;
+  color: #00EFA6;
     text-decoration: underline;
 }
 
@@ -562,7 +564,8 @@ a.popular_link:active {
   /*background-color: lightblue;*/
   text-align: left;
   color: #54A3FF;
-  text-shadow: 1px 1px 0px #222222;
+  /*text-shadow: 1px 1px 0px #222222;*/
+  text-shadow: 1px 1px 0px white;
   margin-left: 8px;
   float: right;
 }
@@ -570,7 +573,8 @@ a.popular_link:active {
 a.recently_link:link {
     text-decoration: none;
     color: #54A3FF;
-    text-shadow: 1px 1px 0px #222222;
+    /*text-shadow: 1px 1px 0px #222222;*/
+    text-shadow: 1px 1px 0px white;
     font-size: 18px;
 }
 
