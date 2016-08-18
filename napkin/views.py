@@ -27,6 +27,8 @@ def generate_name():
 
 def index(request):
 
+    request.session.set_test_cookie()
+
     if request.method == 'POST':
         form = GroupForm(request.POST)
 
@@ -93,6 +95,10 @@ def index(request):
 
 
 def group_page(request, group_name_slug):
+
+    if request.session.test_cookie_worked():
+        print ">>>> TEST COOKIE WORKED!"
+        request.session.delete_test_cookie()
 
     try:
         group_object = Group.objects.get(name_slug=group_name_slug)
@@ -182,6 +188,8 @@ def group_page(request, group_name_slug):
     posts = Post.objects.filter(group_id=group_id).order_by('-created')
     if not posts:
         first_post_date = "This Napkin is empty."
+        post_count = 0
+
     else:
         first_post = Post.objects.filter(group_id=group_id).order_by('-created').first()
         first_post_date_unformated = first_post.created

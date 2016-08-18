@@ -330,6 +330,7 @@ a.link_title:active {
   display: inline-block;
   width: 368px;
   vertical-align: top;
+  margin-bottom: 24px;
 }
 
 .post_container{

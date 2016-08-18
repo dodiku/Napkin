@@ -39,7 +39,9 @@
         <div class="group_title">
           {% if group_name %}
             <span class="title">{{ group_name }}</span></br>
-            <span class="since">{{ post_count }} posts</span></br>
+            {% if post_count > 0 %}
+              <span class="since">{{ post_count }} posts</span></br>
+            {% endif %}
             <span class="since">{{ created_date }}</span></br>
           {% endif %}
         </div>
