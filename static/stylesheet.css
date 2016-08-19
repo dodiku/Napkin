@@ -473,6 +473,10 @@ a.link_title:active {
   color:white;
 }
 
+.about_block{
+  margin-top: 100px;
+}
+
 .title1{
   font-size: 18px;
   text-align: center;
