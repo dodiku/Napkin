@@ -510,13 +510,26 @@ a.link_title:active {
   padding-top: 24px;
 }
 
+@media screen and (max-width: 480px) {
+    .lists {
+        max-width: 100%;
+    }
+  }
+
+@media screen and (min-width: 481px) {
+    .lists {
+        max-width: 70%;
+    }
+  }
+
+
 .lists{
   background-color: #F7F7F7;
   margin-top: 48px;
   margin-left: auto;
   margin-right: auto;
   /*text-align: center;*/
-  max-width: 60%;
+  /*max-width: 60%;*/
   /*min-width: 80%;*/
   font-size: 16px;
   padding-left: 32px;
