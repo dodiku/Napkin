@@ -320,11 +320,23 @@ a.link_title:active {
 }
 
 .group_container{
-  width: 570px;
+  /*width: 570px;*/
   /*background-color: red;*/
   /*margin: auto;*/
   display: inline-block;
 }
+
+@media screen and (max-width: 480px) {
+    .group_container {
+        width: 100%
+    }
+  }
+
+@media screen and (min-width: 481px) {
+    .group_container {
+        width: 570px;
+    }
+  }
 
 .side{
   display: inline-block;
