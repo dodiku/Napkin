@@ -55,11 +55,11 @@
               <div class="post">
                 {% if post.url %}
                   <a class="link_title" href="{{ post.url }}" target="_blank">{{ post.title }}</a></br>
+                  {% if post.text %}
+                    <span class="comment">{{ post.text }}</span></br>
+                  {% endif %}
                   <img style="vertical-align:middle;" alt="{{ post.site_name }}" src="http://www.google.com/s2/favicons?domain_url={{ post.site_url }}" alt="{{ post.site_name }}" />
                   <a class="domain" href="{{ post.site_url }}" target="_blank">{{ post.site_name }}</a></br>
-                {% endif %}
-                {% if post.text %}
-                  <span class="comment">{{ post.text }}</span></br>
                 {% endif %}
                 <span class="since">{{ post.created }}</span></br></br>
               </div>

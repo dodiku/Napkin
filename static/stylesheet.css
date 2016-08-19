@@ -107,7 +107,7 @@ a.link_title:link {
 a.link_title:visited {
     text-decoration: none;
     color: #C9C9C9;
-    font-weight: 300;
+    /*font-weight: 300;*/
 }
 
 a.link_title:hover {
