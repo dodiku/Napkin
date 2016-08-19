@@ -27,7 +27,8 @@ def generate_name():
 
 def index(request):
 
-    request.session.set_test_cookie()
+    # request.session.set_test_cookie()
+    print (request.session.items())
 
     if request.method == 'POST':
         form = GroupForm(request.POST)
@@ -85,9 +86,16 @@ def index(request):
         popular_groups = popular_groups[:5]
         print (popular_groups)
 
+        # getting recent groups
+        if 'recent_groups' in request.session:
+            recent_groups = request.session['recent_groups']
+        else:
+            recent_groups = 'none'
+
         # context dictionery
         context_dict = {
         'popular_groups': popular_groups,
+        'recent_groups': recent_groups,
         'form': GroupForm(), # creating an empty form
         }
 
@@ -96,9 +104,31 @@ def index(request):
 
 def group_page(request, group_name_slug):
 
-    if request.session.test_cookie_worked():
-        print ">>>> TEST COOKIE WORKED!"
-        request.session.delete_test_cookie()
+    # print 'session starts'
+    # print (request.session.keys())
+    # print (request.session.items())
+    #
+    # if 'fav_color' in request.session:
+    #     if request.session['fav_color'] == 'blue':
+    #         print 'the color is blue'
+    #         print (request.session.keys())
+    #         print (request.session.items())
+    #         request.session['fav_color'] = 'green'
+    #     elif request.session['fav_color'] == 'green':
+    #         print 'the color is green'
+    #         print (request.session.keys())
+    #         print (request.session.items())
+    #         print 'setting color to blue'
+    #         request.session['fav_color'] = 'blue'
+    #         print (request.session.keys())
+    #         print (request.session.items())
+    # else:
+    #     print 'no fav_color'
+    #     print 'setting color to blue'
+    #     request.session['fav_color'] = 'blue'
+
+    # request.session['test'] = 'dodi'
+
 
     try:
         group_object = Group.objects.get(name_slug=group_name_slug)
@@ -197,7 +227,52 @@ def group_page(request, group_name_slug):
 
         # getting number of posts in group_id
         post_count = Post.objects.filter(group_id=group_id).count()
-        print post_count
+
+    print ("#####")
+
+    request.session['built_on'] = 'green crack sativa'
+
+    print (request.session.items())
+
+    group_cookie = {
+    "name": group_name,
+    "url": env_url + group_name_slug,
+    }
+
+    if 'recent_groups' in request.session:
+        if group_cookie in request.session['recent_groups']:
+
+            print ("group exists in cookie")
+
+            request.session['recent_groups'].remove(group_cookie)
+            print ("group was removed")
+            print (request.session.items())
+
+            request.session['recent_groups'].insert(0, group_cookie)
+            print ("group was added to the top of the list")
+            print (request.session.items())
+        else:
+            print ("group does not exist")
+            request.session['recent_groups'].insert(0, group_cookie)
+
+            print ('group was added to the array')
+            print (request.session.items())
+
+        cookie_length = len(request.session['recent_groups'])
+        print ('cookie length is:')
+        print (cookie_length)
+        if cookie_length > 5:
+            del request.session['recent_groups'][5]
+            print ('item was removed from the cookie')
+            print ('cookie length is:')
+            print (cookie_length)
+            print (request.session.items())
+    else:
+        print ('added cookie for the first time')
+        request.session['recent_groups'] = []
+        request.session['recent_groups'].insert(0, group_cookie)
+        print (request.session.items())
+
 
     context_dict = {
     'group_name_slug': group_name_slug,

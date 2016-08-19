@@ -65,10 +65,10 @@
             </div>
 
             <div class="recently">
-              {% if popular_groups %}
+              {% if recent_groups != 'none' %}
                 <span class="list_title">Recently visited:</span>
                 <ul>
-                {% for group in popular_groups %}
+                {% for group in recent_groups %}
                   <li><a class="recently_link" style="margin-left:0px;" href="{{ group.url }}">{{ group.name }}</a></li>
                 {% endfor %}
                 </ul>

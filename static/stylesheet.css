@@ -515,8 +515,9 @@ a.link_title:active {
   margin-top: 48px;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
-  width: 440px;
+  /*text-align: center;*/
+  max-width: 60%;
+  /*min-width: 80%;*/
   font-size: 16px;
   padding-left: 32px;
   padding-right: 32px;
@@ -526,10 +527,13 @@ a.link_title:active {
 
 .popular{
   display: inline-block;
-  width: 48%;
+  /*width: 48%;*/
   /*background-color: blue;*/
   text-align: left;
   color: #00EFA6;
+  margin-left: 4%;
+  margin-right: 4%;
+  vertical-align: top;
 }
 
 a.popular_link:link {
@@ -561,14 +565,16 @@ a.popular_link:active {
 
 .recently{
   display: inline-block;
-  width: 48%;
+  /*width: 48%;*/
   /*background-color: lightblue;*/
   text-align: left;
   color: #54A3FF;
   /*text-shadow: 1px 1px 0px #222222;*/
   text-shadow: 1px 1px 0px white;
-  margin-left: 8px;
-  float: right;
+  margin-left: 4%;
+  margin-right: 4%;
+  vertical-align: top;
+  /*float: right;*/
 }
 
 a.recently_link:link {
