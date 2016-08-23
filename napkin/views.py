@@ -14,8 +14,8 @@ from operator import itemgetter
 # from django.utils import timezone
 
 
-# env_url = "http://www.thisisnapkin.com/"
-env_url = "http://127.0.0.1:8000/"
+env_url = "http://www.thisisnapkin.com/"
+# env_url = "http://127.0.0.1:8000/"
 
 
 def generate_name():
