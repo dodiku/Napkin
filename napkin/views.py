@@ -27,8 +27,6 @@ def generate_name():
 
 def index(request):
 
-    print (request.session.items())
-
     if request.method == 'POST':
         form = GroupForm(request.POST)
 
@@ -203,7 +201,7 @@ def group_page(request, group_name_slug):
 
 
     # adding group to cookie for 'recently visited'
-    
+
     request.session['built_on'] = 'green crack sativa'
 
     group_cookie = {
@@ -239,6 +237,13 @@ def group_page(request, group_name_slug):
     }
 
     return render(request, 'napkin/group_page.html', context_dict)
+
+def post_click(request, click_id):
+    post_object = Post.objects.get(id=click_id)
+    post_object.hits = post_object.hits + 1
+    post_object.save()
+
+    return HttpResponse("post was received succesfully")
 
 
 def feedback(request):

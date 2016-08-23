@@ -20,3 +20,4 @@ class Post(models.Model):
     site_url = models.CharField(max_length=600, blank=True)
     text = models.CharField(max_length=1000,blank=False)
     created = models.DateTimeField(auto_now_add=True)
+    hits = models.IntegerField(blank=True, default=0)
