@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>NAPKIN: Share Content</title>
+        <meta charset = "UTF-8" />
+        <meta name="viewport" content="width=device-width">
+        <link href='https://fonts.googleapis.com/css?family=Palanquin:300,500' rel='stylesheet' type='text/css'>
+        <link type="text/css" rel="stylesheet" href="{% static "stylesheet.css" %}"/>
+        <link rel="shortcut icon" type="image/png" href="{% static "images/favicon.png" %}">
+    </head>
+
+    <body>
+      <div class="header_container">
+
+        <div class="header_content">
+            <form action="http://www.thisisnapkin.com/">
+              <input type="submit" value="NAPKIN" class="submit-home">
+            </form>
+          </div>
+
+        <div class="feedback_button">
+            <form action="http://www.thisisnapkin.com/feedback">
+              <input type="submit" value="SEND FEEDBACK" class="submit-feedback">
+            </form>
+        </div>
+
+      </div>
+
+<!--
+- get group name
+- get email
+-->
+      <div class="content">
+
+        <div class="main_block">
+          <div class="subscribe_message" style="text-align:center">
+            <h2><span style="font-weight:300">You are subscribed to:</span><br>
+              <span>{{ group_name }}</span>
+            </h2>
+            <h3><span>using this email:</span><br>
+              <span>{{ email }}</span>
+            </h3>
+            <div class="return_button">
+                <form action="{{ return_url }}">
+                  <input type="submit" value="RETURN TO NAPKIN"  style="float:none" class="submit-post">
+                </form>
+            </div>
+          </div>
+
+
+
+        </div> <!-- end: main block -->
+      </div>  <!-- end: content -->
+      <!-- GOOGLE ANALYTICS STARTS -->
+      <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-68418424-2', 'auto');
+          ga('send', 'pageview');
+      </script>
+      <!-- GOOGLE ANALYTICS ENDS -->
+      <footer class="footer">
+          <div id="footer_left">
+              <a id="about_link" href="http://www.thisisnapkin.com/about/">About NAPKIN</a>
+          </div>
+          <div id="footer_right">
+               Copyright 2016 Napkin. All Rights Reserved.
+          </div>
+      </footer>
+    </body>
+
+</html>

@@ -37,7 +37,7 @@ input[type=text]:placeholder-shown {
   font-style: italic;
 }
 
-input[name=url] {
+input[name=url]{
   width: 300px;
   padding: 8px 12px 8px 12px;
   border: 1px solid rgba(34,34,34,0.2);
@@ -50,6 +50,16 @@ input[name=url] {
 input[type=url]:placeholder-shown {
   color: #C5C3C6;
   font-style: italic;
+}
+
+input[name=email]{
+  width: 300px;
+  padding: 8px 12px 8px 12px;
+  border: 1px solid rgba(34,34,34,0.2);
+  font-weight: 300;
+  font-size: 14px;
+  display: inline;
+  margin-top: 0.5em;
 }
 
 input[type=email]:placeholder-shown {

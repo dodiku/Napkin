@@ -1,6 +1,6 @@
 from django import forms
 from django.template.defaultfilters import slugify
-from napkin.models import Group, Post
+from napkin.models import Group, Post, Subscriber
 from random_name import get_name
 from django.core.exceptions import ValidationError
 
@@ -22,7 +22,7 @@ class GroupForm(forms.ModelForm):
 
     class Meta:
         model = Group
-        exclude = ('name_slug', 'created',)
+        exclude = ('name_slug', 'created', 'subscribers',)
 
 
 
@@ -41,3 +41,11 @@ class PostForm(forms.ModelForm):
             url = "http://" + self.cleaned_data.get('url')
             self.cleaned_data['url'] = url
         return self.cleaned_data
+
+
+class EmailForm(forms.ModelForm):
+    email = forms.EmailField(widget=forms.TextInput({ "placeholder": "email..."}),)
+
+    class Meta:
+        model = Subscriber
+        exclude = ('created',)
