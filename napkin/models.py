@@ -2,10 +2,17 @@ from __future__ import unicode_literals
 from django.template.defaultfilters import slugify
 from django.db import models
 
+
+class Subscriber(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField()
+
+
 class Group(models.Model):
     name = models.CharField(max_length=24, unique=True, blank=False)
     name_slug = models.SlugField(blank=True)
     created = models.DateTimeField(auto_now_add=True, blank=True)
+    subscribers = models.ManyToManyField(to=Subscriber)
 
     def save(self, *args, **kwargs):
         self.name_slug = slugify(self.name)
