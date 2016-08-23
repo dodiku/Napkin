@@ -279,7 +279,6 @@ def email_subscriber(request, group_name_slug):
                 # return render(request, 'napkin/subscribe.html')
                 # return HttpResponse("Subscription was done succesfully")
 
-
             context_dict = {
             'group_name': group_object.name,
             'return_url': env_url + group_name_slug,
@@ -290,8 +289,11 @@ def email_subscriber(request, group_name_slug):
 
         else:
             print "email form is NOT valid --"
-            print form.errors
-            # email_form = form
+            redirection_url = env_url+group_name_slug
+            return redirect(redirection_url)
+            #
+            # print form.errors
+            # # email_form = form
 
 
     else:
