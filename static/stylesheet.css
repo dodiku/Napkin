@@ -352,8 +352,8 @@ a.link_title:active {
   vertical-align: top;
   padding-left: 18px;
   padding-right: 18px;
-  margin-left: 32px;
-  margin-top: 24px;
+  /*margin-left: 32px;*/
+  /*margin-top: 24px;*/
 }
 
 .email_container{
@@ -361,10 +361,24 @@ a.link_title:active {
   display: inline-block;
   padding-left: 18px;
   padding-right: 18px;
-  margin-left: 32px;
+  /*margin-left: 32px;*/
   margin-top: 24px;
   background: #00FFB1;
 }
+
+@media screen and (max-width: 480px) {
+    .post_container, .email_container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+  }
+
+@media screen and (min-width: 481px) {
+    .post_container, .email_container {
+        margin-left: 32px;
+
+    }
+  }
 
 .post_list {
   /*min-height: 1000px;*/
@@ -510,6 +524,7 @@ a.link_title:active {
   line-height: 60px;
   height: 60px;
   width: 100%;
+  min-width: 376px;
   background-color: #222222;
   position: relative;
   display: block;
