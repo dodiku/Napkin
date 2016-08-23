@@ -21,3 +21,8 @@ class Post(models.Model):
     text = models.CharField(max_length=1000,blank=False)
     created = models.DateTimeField(auto_now_add=True)
     hits = models.IntegerField(blank=True, default=0)
+
+    def save(self, *args, **kwargs):
+        if not self.hits:
+            self.hits = 0
+        return super(Post, self).save(*args, **kwargs)
