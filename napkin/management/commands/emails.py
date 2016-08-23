@@ -7,7 +7,7 @@ from napkin.models import Group
 
 class Command(BaseCommand):
     """ A script to send email messages to subscribed users. """
-    MAILGUN_URL = 'https://api.mailgun.net/v3/thisisnapkin.com/messages'
+    MAILGUN_URL = 'https://api.mailgun.net/v3/app8ef8a73420254429a76d72b86e4cd082.mailgun.org/messages'
     MAILGUN_API_KEY = ('api', os.environ.get('MAILGUN_API_KEY', 'YOUR_API_KEY'))
     EMAIL_FROM = 'napkin <admin@thisisnapkin.com>'
 
