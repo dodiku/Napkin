@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
 from django.db.models import Min, Count
-from napkin.forms import GroupForm, PostForm
-from napkin.models import Group, Post
+from napkin.forms import GroupForm, PostForm, EmailForm
+from napkin.models import Group, Post, Subscriber
 from django.template.defaultfilters import slugify
 import datetime
 from time import strftime
@@ -224,6 +224,8 @@ def group_page(request, group_name_slug):
         request.session['recent_groups'] = []
         request.session['recent_groups'].insert(0, group_cookie)
 
+    email_form = EmailForm()
+
 
     context_dict = {
     'group_name_slug': group_name_slug,
@@ -234,6 +236,7 @@ def group_page(request, group_name_slug):
     'created_date': first_post_date,
     'post_form': post_form,
     'group_form': group_form,
+    'email_form': email_form,
     }
 
     return render(request, 'napkin/group_page.html', context_dict)
@@ -244,6 +247,57 @@ def post_click(request, click_id):
     post_object.save()
 
     return HttpResponse("post was received succesfully")
+
+def email_subscriber(request, group_name_slug):
+
+    print ('in email_subscriber')
+    print (group_name_slug)
+
+    try:
+        group_object = Group.objects.get(name_slug=group_name_slug)
+    except Group.DoesNotExist:
+        return HttpResponse("Could not find the requested group. Subscription failed.")
+        print ("bad 01")
+
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            subscriber = form.save(commit=False)
+            email = subscriber.email
+            print (email)
+            if Subscriber.objects.filter(email=email).count() == 0:
+                new_subscriber = Subscriber(email=email)
+                new_subscriber.save()
+                group_object.subscribers.add(new_subscriber)
+                print ("done - new subscriber")
+                # return render(request, 'napkin/subscribe.html')
+                # return HttpResponse("Subscription was done succesfully")
+            else:
+                old_subscriber = Subscriber.objects.get(email=email)
+                group_object.subscribers.add(old_subscriber)
+                print ("done - old subscriber")
+                # return render(request, 'napkin/subscribe.html')
+                # return HttpResponse("Subscription was done succesfully")
+
+
+            context_dict = {
+            'group_name': group_object.name,
+            'return_url': env_url + group_name_slug,
+            'email': email,
+            }
+
+            return render(request, 'napkin/subscribe.html', context_dict)
+
+        else:
+            print "email form is NOT valid --"
+            print form.errors
+            # email_form = form
+
+
+    else:
+        return HttpResponse("Not a POST request")
+        print ("bad 02")
+
 
 
 def feedback(request):

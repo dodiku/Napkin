@@ -105,12 +105,16 @@
 
         <div class="email_container">
           <div class="form_group">
-            Get updates about new content on this list:
-             <form method="post" style="width:300px;" novalidate action="{% url 'group_page' group_name_slug %}">
-               <input id="id_url" maxlength="24" name="name" placeholder="email address..." type="email">
+             <form method="post" style="width:300px;" action="{% url 'email_subscriber' group_name_slug %}">
 
+               {% csrf_token %}
+               {% for hidden in email_form.hidden_fields %}
+                   {{ hidden }}
+               {% endfor %}
+
+               Get updates about new content on this list:<br>
+               <span>{{ email_form.email }}</span></br>
                <span style="color:red;">{{ post_form.errors.as_text }}</span>
-               <br>
                <input type="submit" name="submit" value="SUBSCRIBE" class="email" required/>
              </form>
            </div>
