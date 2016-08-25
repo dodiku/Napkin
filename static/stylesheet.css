@@ -534,7 +534,7 @@ a.link_title:active {
   line-height: 60px;
   height: 60px;
   width: 100%;
-  min-width: 376px;
+  /*min-width: 376px;*/
   background-color: #222222;
   position: relative;
   display: block;
@@ -659,6 +659,10 @@ a.recently_link:active {
 .list_title{
   text-shadow: 0px 0px 0px #F7F7F7;
   color: #222;
+}
+
+.comment{
+  font-size:14px;
 }
 
 #footer_left {
