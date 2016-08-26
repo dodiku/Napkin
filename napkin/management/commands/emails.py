@@ -35,7 +35,7 @@ class Command(BaseCommand):
             email_date = email_date.strftime("%B %d, %Y")
             subject = subject + " -- " + email_date
 
-            group_title_url = 'http://www.thisisnapkin.com' + group.name_slug
+            group_title_url = 'http://www.thisisnapkin.com/' + group.name_slug
             group_title = '<a href="' + group_title_url + '"><h1>' + group.name + '</h1></a>'
 
             urls = ''
