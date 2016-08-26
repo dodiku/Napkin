@@ -38,7 +38,13 @@ class Command(BaseCommand):
             urls = ''
             for p in posts:
                 post_url = 'http://www.thisisnapkin.com/click/' + str(p.id) + '/redirect/'
-                urls = urls + '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + p.text + '<br/>' + '<span>' + p.site_name + '</span><br/>' + '<span>' + str(p.hits) + ' hits</span><br/><br/>'
+
+                if p.text == "":
+                    text = ""
+                else:
+                    text = '<span style="color: #989898;>'p.text + '</span><br/>' 
+
+                urls = urls + '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + text + '<span style="color: #989898;font-weight: bold;">' + str(p.hits) + ' hits</span><br/><br/>'
 
             body = '<html><head><meta charset = "UTF-8" /></head><body>' + urls + '</body></html>'
 
