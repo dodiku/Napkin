@@ -35,6 +35,9 @@ class Command(BaseCommand):
             email_date = email_date.strftime("%B %d, %Y")
             subject = subject + " -- " + email_date
 
+            group_title_url = 'http://www.thisisnapkin.com' + group.name_slug
+            group_title = '<a href="' + group_title_url + '"><h2>' + group.name + '</h2></a>'
+
             urls = ''
             for p in posts:
                 post_url = 'http://www.thisisnapkin.com/click/' + str(p.id) + '/redirect/'
@@ -46,7 +49,7 @@ class Command(BaseCommand):
 
                 urls = '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + text + '<div style="color: #989898;font-weight: bold;line-height: 1.5em;">' + str(p.hits) + ' hits</div><br/><br/>' + urls
 
-            body = '<html><head><meta charset = "UTF-8" /></head><body>' + urls + '</body></html>'
+            body = '<html><head><meta charset = "UTF-8" /></head><body>' + group_title + urls + '</body></html>'
 
             for subscriber in subscribers:
                 resp = Command.send_email(recipients=[subscriber.email], subject=subject, body=body)
