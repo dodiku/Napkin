@@ -4,12 +4,11 @@ import requests
 from django.core.management.base import BaseCommand
 from napkin.models import Group
 
-
 class Command(BaseCommand):
     """ A script to send email messages to subscribed users. """
-    MAILGUN_URL = 'https://api.mailgun.net/v3/app8ef8a73420254429a76d72b86e4cd082.mailgun.org/messages'
+    MAILGUN_URL = 'https://api.mailgun.net/v3/notify.thisisnapkin.com'
     MAILGUN_API_KEY = ('api', os.environ.get('MAILGUN_API_KEY', 'YOUR_API_KEY'))
-    EMAIL_FROM = 'napkin <admin@thisisnapkin.com>'
+    EMAIL_FROM = 'NAPKIN <notify@thisisnapkin.com>'
 
     help = 'Send emails to subscribed users.'
 
@@ -31,7 +30,7 @@ class Command(BaseCommand):
             if not posts:
                 continue
 
-            urls = ''.join(['<a href="{url}">{title}</a><br/><br/>'.format(url=p.url, title=p.title) for p in posts])
+            urls = ''.join(['<a href="{url}">{title}</a><br/>{text}<br/><br/>'.format(url=p.url, title=p.title, text=p.text) for p in posts])
             subject = 'Here is your napkin digest for group [{group}]!'.format(group=group.name)
             body = '<html><body>{urls}</body></html>'.format(urls=urls)
 
