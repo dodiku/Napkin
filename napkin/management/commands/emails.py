@@ -37,11 +37,10 @@ class Command(BaseCommand):
 
             urls = ''
             for p in posts:
-                urls = urls + '<div class="post"><a id="' + str(p.id) + 'style="font-size: 16px;line-height: 1.8em;" href="' + p.url + '">' + p.title + '</a><br/>' + p.text + '<br/>' + '<span style="color:#989898;>' + p.site_name + '</span>' + '<span style="font-weight:bold;color:#989898;> | ' + str(p.hits) + ' hits</span></div><br/><br/>'
+                post_url = 'http://www.thisisnapkin.com/click/' + str(p.id) + '/redirect/'
+                urls = urls + '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + p.text + '<br/>' + '<span>' + p.site_name + '</span><br/>' + '<span>' + str(p.hits) + ' hits</span><br/><br/>'
 
-            script = '<script>$(".post").click(function(){var postID = $(this).children().attr("id"); var url = "/click/" + postID; $.ajax({url: url, type: "GET", error: function(err){console.log("Could not talk to Django");console.log(err);},success: function(data){},});});</script>'
-
-            body = '<html><head><meta charset = "UTF-8" /></head><body>' + urls + script + '</body></html>'
+            body = '<html><head><meta charset = "UTF-8" /></head><body>' + urls + '</body></html>'
 
             for subscriber in subscribers:
                 resp = Command.send_email(recipients=[subscriber.email], subject=subject, body=body)

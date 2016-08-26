@@ -248,6 +248,14 @@ def post_click(request, click_id):
 
     return HttpResponse("post was received succesfully")
 
+def post_click_redirect(request, click_id):
+    post_object = Post.objects.get(id=click_id)
+    post_object.hits = post_object.hits + 1
+    post_object.save()
+
+    redirection_url = post_object.url
+    return redirect(redirection_url)
+
 def email_subscriber(request, group_name_slug):
 
     print ('in email_subscriber')
