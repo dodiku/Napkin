@@ -36,14 +36,14 @@ class Command(BaseCommand):
             subject = subject + " -- " + email_date
 
             group_title_url = 'http://www.thisisnapkin.com' + group.name_slug
-            group_title = '<a href="' + group_title_url + '"><h2>' + group.name + '</h2></a>'
+            group_title = '<a href="' + group_title_url + '"><h1>' + group.name + '</h1></a>'
 
             urls = ''
             for p in posts:
                 post_url = 'http://www.thisisnapkin.com/click/' + str(p.id) + '/redirect/'
 
                 if p.text:
-                    text = '<div style="color: #989898;line-height: 1.5em;">' + p.text + '</div><br/>'
+                    text = '<div style="color: #989898;line-height: 1.5em;">' + p.text + '</div>'
                 else:
                     text = ''
 
