@@ -32,17 +32,17 @@ class Command(BaseCommand):
 
             subject = 'Here is your napkin digest for group [{group}]!'.format(group=group.name)
             email_date = datetime.datetime.now()
-            email_date = str(email_date)
+            email_date = email_date.strftime("%B %d, %Y")
             subject = subject + " -- " + email_date
 
             urls = ''
             for p in posts:
                 post_url = 'http://www.thisisnapkin.com/click/' + str(p.id) + '/redirect/'
 
-                if p.text == "":
-                    text = ""
-                else:
+                if p.text:
                     text = '<span style="color: #989898;>' + p.text + '</span><br/>'
+                else:
+                    text = " "
 
                 urls = urls + '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + text + '<span style="color: #989898;font-weight: bold;">' + str(p.hits) + ' hits</span><br/><br/>'
 
