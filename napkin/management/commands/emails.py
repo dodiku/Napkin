@@ -42,9 +42,9 @@ class Command(BaseCommand):
                 if p.text:
                     text = '<span style="color: #989898;>' + p.text + '</span><br/>'
                 else:
-                    text = " "
+                    text = 'bla'
 
-                urls = urls + '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + text + '<span style="color: #989898;font-weight: bold;">' + str(p.hits) + ' hits</span><br/><br/>'
+                urls = '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + text + '<span style="color: #989898;font-weight: bold;">' + str(p.hits) + ' hits</span><br/><br/>' + urls
 
             body = '<html><head><meta charset = "UTF-8" /></head><body>' + urls + '</body></html>'
 
