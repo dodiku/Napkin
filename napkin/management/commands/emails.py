@@ -30,7 +30,9 @@ class Command(BaseCommand):
             if not posts:
                 continue
 
-            urls = ''.join(['<a href="{url}">{title}</a><br/>{text}<br/><br/>'.format(url=p.url, title=p.title, text=p.text) for p in posts].encode('utf-8'))
+            # c = ', '.join('{}={}'.format(*t) for t in zip(a, b))
+            urls = ''.join(['<a href="{url}">{title}</a><br/><br/>'.format(url=p.url, title=p.title) for p in posts])
+            # urls = ''.join(['<a href="{url}">{title}</a><br/>{text}<br/><br/>'.format(url=p.url, title=p.title, text=p.text) for p in posts].encode('utf-8'))
             subject = 'Here is your napkin digest for group [{group}]!'.format(group=group.name)
             body = '<html><body>{urls}</body></html>'.format(urls=urls)
 
