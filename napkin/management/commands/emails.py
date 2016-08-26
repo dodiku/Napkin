@@ -40,11 +40,11 @@ class Command(BaseCommand):
                 post_url = 'http://www.thisisnapkin.com/click/' + str(p.id) + '/redirect/'
 
                 if p.text:
-                    text = '<span style="color: #989898;>' + p.text + '</span><br/>'
+                    text = '<div style="color: #989898;>' + p.text + '</div><br/>'
                 else:
                     text = '<span style="color: #989898;>' + 'bla' + '</span><br/>'
 
-                urls = '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + '<div style="color: #989898;>' + p.text + '</div><br/>' + '<div style="color: #989898;font-weight: bold;">' + str(p.hits) + ' hits</div><br/><br/>' + urls
+                urls = '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + p.text + '<br/>' + '<div style="color: #989898;font-weight: bold;">' + str(p.hits) + ' hits</div><br/><br/>' + urls
 
             body = '<html><head><meta charset = "UTF-8" /></head><body>' + urls + '</body></html>'
 
