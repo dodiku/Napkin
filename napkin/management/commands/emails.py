@@ -41,11 +41,10 @@ class Command(BaseCommand):
 
                 if p.text:
                     text = '<span style="color: #989898;>' + p.text + '</span><br/>'
-                    print (text)
                 else:
                     text = '<span style="color: #989898;>' + 'bla' + '</span><br/>'
 
-                urls = '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + '<span style="color: #989898;>' + p.text + '</span><br/>' + '<span style="color: #989898;font-weight: bold;">' + str(p.hits) + ' hits</span><br/><br/>' + urls
+                urls = '<a style="font-size: 16px;line-height: 1.8em;" href="' + post_url + '">' + p.title + '</a><br/>' + '<div style="color: #989898;>' + p.text + '</div><br/>' + '<div style="color: #989898;font-weight: bold;">' + str(p.hits) + ' hits</div><br/><br/>' + urls
 
             body = '<html><head><meta charset = "UTF-8" /></head><body>' + urls + '</body></html>'
 
